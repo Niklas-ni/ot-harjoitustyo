@@ -1,0 +1,21 @@
+$ git log --stat|cat
+commit 4708671aeeb2369fff52f77f3ddaf82a90acecd5
+Author: Niklas N <niri.niiranen@gmail.com>
+Date:   Mon Mar 16 20:09:02 2020 +0200
+
+    poisto ja uusinimi
+
+ tiedostoja/file2             | 0
+ tiedostoja/{file1 => file22} | 0
+ 2 files changed, 0 insertions(+), 0 deletions(-)
+
+commit 7098e8935ea04f461992ff9dc89936965a04bccb
+Author: Niklas N <niri.niiranen@gmail.com>
+Date:   Mon Mar 16 19:59:03 2020 +0200
+
+    lisätty
+
+ tiedostoja/file1 | 0
+ tiedostoja/file2 | 0
+ tiedostoja/file3 | 0
+ 3 files changed, 0 insertions(+), 0 deletions(-)
