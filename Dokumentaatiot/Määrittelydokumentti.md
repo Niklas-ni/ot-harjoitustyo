@@ -1,7 +1,7 @@
 
-###### Vaatimusmäärittely
+#### **Vaatimusmäärittely**
 
-#### Sovelluksen tarkoitus
+## **Sovelluksen tarkoitus**
 
 Sovelluksen tarkoitus on tehdä **SakkoKassa**. Eli lista jossa voidaan pitää kirjaa
 eri esim. pelaajien sakoista joukkuelajeissa. 
@@ -13,7 +13,7 @@ Ja myös lisäämään ja poistamaan sakkoja pelaajilta.
 Kassoja voi olla monta ja niitä pääsee seuraamaan jos tietää **Kassan nimen**.
 Mutta vain jos olet KassaVastaava ja tiedät salasanan kassaan niin pystyt muuttamaan tietoja.
 
-#### Käyttäjä
+## **Käyttäjä**
 
 On olemassa "normaali" käyttäjä joka voi katsoa tietyn kassan tilannetta.
 "normaali käyttäjä" pystyy myös luomaan uuden kassan jolloin hänestä tulee **SakkoVastaava**.
@@ -21,16 +21,16 @@ Käyttäjä **SakkoVastaava** pystyy sitten salasanan kanssa kirjautumaan tietty
 Vastaavan kirjautuneena Kassaan pystyy lisämään "nimiä" ja poistamaan "nimiä".
 ja myös lisäämään tai poistamaan sakkoja tietylle "nimelle" joka on listassa.
 
-#### käyttöliittymä Luonnos
+## **käyttöliittymä Luonnos**
 
-![Luonnos](SakkoKassaLuonnos.jpg)
+![Luonnos](SakkoKassaLuonnos1.jpg)
 Sovellus koostuu neljästä eri näkymästä alku jossa voi tarkastella kassa tilanetta kassan nimellä.
 syöttmälllä kassan nimi siirtyy uuteen ikkunaan katsomaan tilannetta kassassa.
 kassavastaava nappi johon voi syöttää nimen ja salasanan.
 Jolloin uusi ikkuna avautuu missä on nimet ja sakot ja mahdollisuudet lisätä ja poistaa.
 ja luo uusi nappi jolloin avautuu uusi ikkuna missä voi tehdä uuden kassan salasanan kanssa.
 
-#### Perusversion tarjonta
+## **Perusversion tarjonta**
 
 käyttääjän on alussa tehtävä uusi kassa. 
 käyttäjän ei ole pakko kirjautua katsoakseen kassan tilannetta.
@@ -39,7 +39,7 @@ Kirjautuneena kassavastaavana
 on mahdollisuus lisätä nimiä ja hallinoida sakkoja.
 ja myös poistua kassasta.  
 
-#### Jatko kehittelyä
+## **Jatko kehittelyä**
 
 Kassankokonais suuruus paljonko sakkoja on tullut.
 mahdollisuus poistaa kokonaiskassasta jos on käytetty kassaa jonkun maksamiseen.
