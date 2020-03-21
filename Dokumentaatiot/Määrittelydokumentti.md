@@ -32,21 +32,20 @@ ja luo uusi nappi jolloin avautuu uusi ikkuna missä voi tehdä uuden kassan sal
 
 ## **Perusversion tarjonta**
 
-käyttääjän on alussa tehtävä uusi kassa. 
-käyttäjän ei ole pakko kirjautua katsoakseen kassan tilannetta.
-katsottuaan kassan tilanetta käyttäjä voi myös poistua kassasta.
-Kirjautuneena kassavastaavana 
-on mahdollisuus lisätä nimiä ja hallinoida sakkoja.
+* Käyttääjän on alussa tehtävä uusi kassa. 
+* Käyttäjän ei ole pakko kirjautua katsoakseen kassan tilannetta.
+* Katsottuaan kassan tilanetta käyttäjä voi myös poistua kassasta.
+* Kirjautuneena kassavastaavana on mahdollisuus lisätä nimiä ja hallinoida sakkoja.
 ja myös poistua kassasta.  
 
 ## **Jatko kehittelyä**
 
-Kassankokonais suuruus paljonko sakkoja on tullut.
-mahdollisuus poistaa kokonaiskassasta jos on käytetty kassaa jonkun maksamiseen.
-aika koska eri sakkoja lisätty.
-syy miksi sakkoja lisätty.
-joitain nopeita nappeja jolla saa helposti vastaavana kirjattua sakkoja nimille.
-myös mahdollisuus tulostaa kassa tilanne esim whatapp viestiin.
+* Kassankokonais suuruus paljonko sakkoja on tullut.
+* mahdollisuus poistaa kokonaiskassasta jos on käytetty kassaa jonkun maksamiseen.
+* aika koska eri sakkoja lisätty.
+* syy miksi sakkoja lisätty.
+* joitain nopeita nappeja jolla saa helposti vastaavana kirjattua sakkoja nimille.
+* myös mahdollisuus tulostaa kassa tilanne esim whatapp viestiin.
  
 
  
