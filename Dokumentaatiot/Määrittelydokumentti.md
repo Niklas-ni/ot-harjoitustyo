@@ -23,7 +23,7 @@ ja myös lisäämään tai poistamaan sakkoja tietylle "nimelle" joka on listass
 
 ## **käyttöliittymä Luonnos**
 
-![Luonnos](SakkoKassaLuonnos1.jpg)
+![Luonnos](~ot-harjoitustyo/Dokumentaatiot/Kuvat/SakkoKassaLuonnos1.jpg)
 Sovellus koostuu neljästä eri näkymästä alku jossa voi tarkastella kassa tilanetta kassan nimellä.
 syöttmälllä kassan nimi siirtyy uuteen ikkunaan katsomaan tilannetta kassassa.
 kassavastaava nappi johon voi syöttää nimen ja salasanan.
