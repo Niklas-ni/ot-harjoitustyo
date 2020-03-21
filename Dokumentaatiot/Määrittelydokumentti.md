@@ -1,6 +1,7 @@
+
 ###### Vaatimusmäärittely
 
-####Sovelluksen tarkoitus
+#### Sovelluksen tarkoitus
 
 Sovelluksen tarkoitus on tehdä **SakkoKassa**. Eli lista jossa voidaan pitää kirjaa
 eri esim. pelaajien sakoista joukkuelajeissa. 
@@ -12,7 +13,7 @@ Ja myös lisäämään ja poistamaan sakkoja pelaajilta.
 Kassoja voi olla monta ja niitä pääsee seuraamaan jos tietää **Kassan nimen**.
 Mutta vain jos olet KassaVastaava ja tiedät salasanan kassaan niin pystyt muuttamaan tietoja.
 
-####Käyttäjä
+#### Käyttäjä
 
 On olemassa "normaali" käyttäjä joka voi katsoa tietyn kassan tilannetta.
 "normaali käyttäjä" pystyy myös luomaan uuden kassan jolloin hänestä tulee **SakkoVastaava**.
