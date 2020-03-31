@@ -1,20 +1,22 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
-/**
- *
- * @author niri91
- */
-public class MainSakkoKassa {
+import java.sql.SQLException;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+public class MainSakkoKassa{
+ 
+
+
+
+    public static void main(String[] args) throws SQLException {
+        String team = "TPS";
+        String nimi = "Kalle";
+        Sqlconnection.CreateSakkokassaTable(team);
+        Sqlconnection.AddSakkokassaPlayer(team, nimi);
+        Sqlconnection.AddSakkokassaPlayerMoney(team, "Isa", 20);
+        Sqlconnection.AddSakkokassaPlayerMoney(team, "Miike", 100);
+        Sqlconnection.SakkokassaPlayerNewPayment(team, nimi, 40);
+        
+    
     }
+    
     
 }
