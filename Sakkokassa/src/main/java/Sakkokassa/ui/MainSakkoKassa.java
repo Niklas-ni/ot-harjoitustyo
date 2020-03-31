@@ -1,7 +1,8 @@
 package Sakkokassa.ui;
 
 
-
+import KassaSql.Sqlconnection;
+import java.sql.SQLException;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -31,8 +32,11 @@ public class MainSakkoKassa extends Application {
       // tee lopetustoimenpiteet täällä
       System.out.println("sovellus sulkeutuu");
     }
- public static void main(String[] args) {
-        launch(args);
+ public static void main(String[] args) throws SQLException {
+        //Sqlconnection.CreateSakkokassaTable("TPS");
+        
+        System.out.println(Sqlconnection.PrintNamesFromTable("TPS"));
+     //launch(args);
     }
     
 }

@@ -1,23 +1,25 @@
+package KassaSql;
+
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class Sqlconnection {
 
-    public static void CreateSakkokassaTable(String NameOfTeam) throws SQLException {
+    public static String CreateSakkokassaTable(String NameOfTeam) throws SQLException {
         try {
             Connection db = DriverManager.getConnection("jdbc:sqlite:testi.db");
             Statement Sakkokassa = db.createStatement();
             Sakkokassa.execute("CREATE TABLE " + NameOfTeam + " (id INTEGER PRIMARY KEY, Name TEXT UNIQUE, ToPay INTEGER)");
             Sakkokassa.execute("PRAGMA foreign_keys = ON");
-            System.out.println("Done!");
+            return "Done!";
         } catch (SQLException e) {
             System.out.println(e);
             System.out.println("Allready existing choose another:");
         }
-        
+        return "Fail!";
     }
-    public static void AddSakkokassaPlayer(String NameOfTeam, String player) throws SQLException {
+    public static String AddSakkokassaPlayer(String NameOfTeam, String player) throws SQLException {
        try {
             Connection db = DriverManager.getConnection("jdbc:sqlite:testi.db");
             Statement Sakkokassa = db.createStatement();
@@ -26,11 +28,12 @@ public class Sqlconnection {
             p.setString(1, player);
             p.setInt(2, 0);
             p.executeUpdate();
-            System.out.println("Player Added");
+            return "Player Added";
         } catch (SQLException e) {
             System.out.println(e);
             System.out.println("Player exist");
         }
+       return "Fail!";
     }
     public static void AddSakkokassaPlayerMoney(String NameOfTeam, String player, int ToPay) throws SQLException {
        try {
@@ -61,7 +64,8 @@ public class Sqlconnection {
             System.out.println("Does not exist!");
         }
     }
-      public static String PrintTables(String NameOfTeam) throws SQLException {
+      public static ArrayList PrintNamesFromTable(String NameOfTeam) throws SQLException {
+        ArrayList players = new ArrayList();
         
          try {
             Connection db = DriverManager.getConnection("jdbc:sqlite:testi.db");
@@ -72,14 +76,15 @@ public class Sqlconnection {
             ResultSet r = p.executeQuery();
             while (r.next()) {
                 String id = r.getString("Name");
-                System.out.println(id);
+                players.add(id);
+                
 
             }
         } catch (SQLException e) {
              System.out.println("No such List");
 
         }
-        return "Done";
+        return players;
     }
 }
 

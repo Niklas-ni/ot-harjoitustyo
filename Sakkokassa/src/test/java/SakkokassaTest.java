@@ -1,4 +1,4 @@
-
+import KassaSql.Sqlconnection;
 import java.sql.SQLException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -29,8 +29,10 @@ public class SakkokassaTest {
     }
 
     @Test
-    public void CreateKassaOk() {
-    
-      
+    public void CreateKassaPrintPlayers() throws SQLException {
+        String team = "TPS";
+        String player = "Kalle";
+        assertEquals("Done!", Sqlconnection.CreateSakkokassaTable(team));
+        assertEquals("Player Added",Sqlconnection.AddSakkokassaPlayer(team, player));
      }
 }
