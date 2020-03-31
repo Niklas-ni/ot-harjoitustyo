@@ -3,13 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.sakkokassa;
 
 /**
  *
  * @author niri91
  */
-public class MainSakkokassa {
+public class MainSakkoKassa {
 
     /**
      * @param args the command line arguments
