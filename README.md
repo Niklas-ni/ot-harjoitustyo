@@ -1,4 +1,4 @@
-#SakkoKassa
+# SakkoKassa
 
 Sakkokassan tarkoitus on pitää kirjaa sakoista eri henilöille eri joukkueissa esim. 
 Se on tehty helpottamaan kirjanpitoa. Tarkoitus on pystyä lisäämään joukkue ja siihen sisälle pelaajia joille voi sitten vaihtaa sakkojen suuruutta.
