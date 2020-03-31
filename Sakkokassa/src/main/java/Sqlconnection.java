@@ -1,5 +1,6 @@
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class Sqlconnection {
 
@@ -60,6 +61,27 @@ public class Sqlconnection {
             System.out.println("Does not exist!");
         }
     }
+      public static String PrintTables(String NameOfTeam) throws SQLException {
+        
+         try {
+            Connection db = DriverManager.getConnection("jdbc:sqlite:testi.db");
+            Statement Sakkokassa = db.createStatement();
+            PreparedStatement p = db.prepareStatement("SELECT Name FROM " + NameOfTeam );
+            
 
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+                String id = r.getString("Name");
+                System.out.println(id);
+
+            }
+        } catch (SQLException e) {
+             System.out.println("No such List");
+
+        }
+        return "Done";
+    }
 }
+
+
     

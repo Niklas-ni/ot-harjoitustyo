@@ -72,6 +72,7 @@ public class KassapaateTest {
         assertEquals(100000, Testikassa.kassassaRahaa());
         assertEquals(0, Testikassa.maukkaitaLounaitaMyyty());
         assertEquals(300, Testikassa.syoMaukkaasti(300));
+        
     }
     @Test
     public void EiRahaaEdullinen() {
