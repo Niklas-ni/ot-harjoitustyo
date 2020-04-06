@@ -45,7 +45,7 @@
                 <version>0.8.3</version>
                 <configuration>
                     <excludes>
-                        <exclude>todoapp/ui/**/*</exclude>
+                        <exclude>kassaui/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

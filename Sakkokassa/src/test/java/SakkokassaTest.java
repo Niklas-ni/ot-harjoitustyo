@@ -1,4 +1,6 @@
-import KassaSql.Sqlconnection;
+
+import sql.Sqlconnection;
+import domain.Kassa;
 import java.sql.SQLException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -14,10 +16,12 @@ public class SakkokassaTest {
 
     @BeforeClass
     public static void setUpClass() {
+
     }
 
     @AfterClass
     public static void tearDownClass() {
+
     }
 
     @Before
@@ -31,24 +35,38 @@ public class SakkokassaTest {
     @Test
     public void CreateKassa() throws SQLException {
         String team = "TPS";
-        assertEquals(true, Sqlconnection.CreateSakkokassaTable(team));
-     
+        assertEquals(true, Kassa.newcashbox(team));
+
     }
-     @Test
+
+    @Test
     public void CreateDuplicateKassa() throws SQLException {
         String team = "HIFK";
-        Sqlconnection.CreateSakkokassaTable(team);
-         assertEquals(false ,Sqlconnection.CreateSakkokassaTable(team));
-        
-        
+        Kassa.newcashbox(team);
+        assertEquals(false, Kassa.newcashbox(team));
+
     }
+
     @Test
     public void AddPlayerWithoutToPayKassa() throws SQLException {
         String team = "IFK";
-        String player = "Niklas";
-        Sqlconnection.CreateSakkokassaTable(team);
-        assertEquals(true, Sqlconnection.AddSakkokassaPlayer(team, player));
-        
+        Kassa.isacashbox(team);
+        assertEquals(true, Kassa.isacashbox(team));
+
     }
-    
+
+    @Test
+    public void Addcashboxandpassword() throws SQLException {
+        String team = "HPK";
+        String password = "password";
+        assertEquals(true, Kassa.newcashboxpassword(team, password));
+    }
+
+    @Test
+    public void Checkpassword() throws SQLException {
+        String team = "HPK";
+        String password = "password";
+        assertEquals(true, Kassa.checkpassword(team, password));
+    }
+
 }

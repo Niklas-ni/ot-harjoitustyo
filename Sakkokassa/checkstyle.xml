@@ -4,18 +4,6 @@
     <property name="localeCountry" value="EN"/>
     <property name="localeLanguage" value="en"/>
     <module name='TreeWalker'>
-         <module name="JavadocMethod">
-    <property name="scope" value="public"/>
-    <property name="allowMissingParamTags" value="false"/>
-    <property name="allowMissingPropertyJavadoc" value="true"/>
-    <property name="allowMissingThrowsTags" value="false"/>
-    <property name="allowMissingReturnTag" value="false"/>
-    <property name="allowThrowsTagsForSubclasses" value="true"/>
-  </module>
-  <module name="JavadocStyle">
-    <property name="scope" value="public"/>
-    <property name="checkEmptyJavadoc" value="true"/>
-  </module>
         <property name='tabWidth' value='4' />
         <module name='EmptyBlock' />
         <module name='LeftCurly' />
@@ -23,10 +11,10 @@
         <module name='RightCurly' />
         <module name='AvoidNestedBlocks' />
         <module name="NestedIfDepth">
-          <property name="max" value="2"/>
+            <property name="max" value="2"/>
         </module>
         <module name="NestedForDepth">
-          <property name="max" value="2"/>
+            <property name="max" value="2"/>
         </module>
         <module name="NestedTryDepth"/>
         <module name='Indentation' />
@@ -72,6 +60,6 @@
         <property name='max' value='500' />
     </module>
     <module name="SuppressionFilter">
-  <property name="file" value="skipped_files.xml" />
-</module>
+        <property name="file" value="skipped_files.xml" />
+    </module>
 </module>
