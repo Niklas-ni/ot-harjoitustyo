@@ -29,10 +29,26 @@ public class SakkokassaTest {
     }
 
     @Test
-    public void CreateKassaPrintPlayers() throws SQLException {
+    public void CreateKassa() throws SQLException {
         String team = "TPS";
-        String player = "Kalle";
-        assertEquals("Done!", Sqlconnection.CreateSakkokassaTable(team));
-        assertEquals("Player Added",Sqlconnection.AddSakkokassaPlayer(team, player));
-     }
+        assertEquals(true, Sqlconnection.CreateSakkokassaTable(team));
+     
+    }
+     @Test
+    public void CreateDuplicateKassa() throws SQLException {
+        String team = "HIFK";
+        Sqlconnection.CreateSakkokassaTable(team);
+         assertEquals(false ,Sqlconnection.CreateSakkokassaTable(team));
+        
+        
+    }
+    @Test
+    public void AddPlayerWithoutToPayKassa() throws SQLException {
+        String team = "IFK";
+        String player = "Niklas";
+        Sqlconnection.CreateSakkokassaTable(team);
+        assertEquals(true, Sqlconnection.AddSakkokassaPlayer(team, player));
+        
+    }
+    
 }

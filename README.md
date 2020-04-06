@@ -12,6 +12,10 @@ Se on tehty helpottamaan kirjanpitoa. Tarkoitus on pystyä lisäämään joukkue
 
 ## Testaus
 
+Lähdekoodi kootaan komenolla.
+
+*mvn compile:* 
+
 Testit suoritetaan komennolla
 
 *mvn test*
@@ -26,7 +30,7 @@ Komento:
 
 :mvn package:
 
-generoi hakemistoon target suoritettavan jar-tiedoston OtmTodoApp-1.0-SNAPSHOT.jar
+generoi hakemistoon target suoritettavan jar-tiedoston Sakkokassa-1.0-SNAPSHOT.jar
 JavaDoc
 
 JavaDoc generoidaan komennolla

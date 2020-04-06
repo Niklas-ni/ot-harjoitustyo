@@ -1,92 +1,154 @@
 package KassaSql;
 
-
 import java.sql.*;
 import java.util.ArrayList;
+import Sakkokassa.domain.Sakotettavia;
 
 public class Sqlconnection {
 
-    public static String CreateSakkokassaTable(String NameOfTeam) throws SQLException {
+    public static boolean CreateSakkokassaTable(String NameOfTeam) throws SQLException {
         try {
             Connection db = DriverManager.getConnection("jdbc:sqlite:testi.db");
             Statement Sakkokassa = db.createStatement();
             Sakkokassa.execute("CREATE TABLE " + NameOfTeam + " (id INTEGER PRIMARY KEY, Name TEXT UNIQUE, ToPay INTEGER)");
             Sakkokassa.execute("PRAGMA foreign_keys = ON");
-            return "Done!";
         } catch (SQLException e) {
             System.out.println(e);
             System.out.println("Allready existing choose another:");
+            return false;
         }
-        return "Fail!";
+        return true;
     }
-    public static String AddSakkokassaPlayer(String NameOfTeam, String player) throws SQLException {
-       try {
+
+    public static boolean AddSakkokassaPlayer(String NameOfTeam, String player) throws SQLException {
+        try {
             Connection db = DriverManager.getConnection("jdbc:sqlite:testi.db");
             Statement Sakkokassa = db.createStatement();
 
-            PreparedStatement p = db.prepareStatement("INSERT INTO " + NameOfTeam +"(Name,ToPay) VALUES (?,?)");
+            PreparedStatement p = db.prepareStatement("INSERT INTO " + NameOfTeam + "(Name,ToPay) VALUES (?,?)");
             p.setString(1, player);
             p.setInt(2, 0);
             p.executeUpdate();
-            return "Player Added";
         } catch (SQLException e) {
             System.out.println(e);
             System.out.println("Player exist");
+            return false;
         }
-       return "Fail!";
+        return true;
     }
-    public static void AddSakkokassaPlayerMoney(String NameOfTeam, String player, int ToPay) throws SQLException {
-       try {
+
+    public static boolean AddSakkokassaPlayerMoney(String NameOfTeam, String player, int ToPay) throws SQLException {
+        try {
             Connection db = DriverManager.getConnection("jdbc:sqlite:testi.db");
             Statement Sakkokassa = db.createStatement();
 
-            PreparedStatement p = db.prepareStatement("INSERT INTO " + NameOfTeam +"(Name,ToPay) VALUES (?,?)");
+            PreparedStatement p = db.prepareStatement("INSERT INTO " + NameOfTeam + "(Name,ToPay) VALUES (?,?)");
             p.setString(1, player);
             p.setInt(2, ToPay);
             p.executeUpdate();
-            System.out.println("Player Added and ToPay made!");
         } catch (SQLException e) {
             System.out.println(e);
             System.out.println("Player exist");
+            return false;
         }
+        return true;
     }
-     public static void SakkokassaPlayerNewPayment(String NameOfTeam, String player, int ToPay) throws SQLException {
-       try {
+
+    public static boolean SakkokassaPlayerNewPayment(String NameOfTeam, String player, int ToPay) throws SQLException {
+        try {
             Connection db = DriverManager.getConnection("jdbc:sqlite:testi.db");
             Statement Sakkokassa = db.createStatement();
-        
-            PreparedStatement p = db.prepareStatement("UPDATE " + NameOfTeam +" SET ToPay = ToPay + " + ToPay + " WHERE " + NameOfTeam+ ".Name=?");
+
+            PreparedStatement p = db.prepareStatement("UPDATE " + NameOfTeam + " SET ToPay = ToPay + " + ToPay + " WHERE " + NameOfTeam + ".Name=?");
             p.setString(1, player);
             p.executeUpdate();
-            System.out.println("Uppdate made!");
         } catch (SQLException e) {
             System.out.println(e);
             System.out.println("Does not exist!");
+            return false;
         }
+        return true;
     }
-      public static ArrayList PrintNamesFromTable(String NameOfTeam) throws SQLException {
+
+    public static ArrayList PrintNamesFromTable(String NameOfTeam) throws SQLException {
         ArrayList players = new ArrayList();
-        
-         try {
+
+        try {
             Connection db = DriverManager.getConnection("jdbc:sqlite:testi.db");
             Statement Sakkokassa = db.createStatement();
-            PreparedStatement p = db.prepareStatement("SELECT Name FROM " + NameOfTeam );
-            
+            PreparedStatement p = db.prepareStatement("SELECT Name FROM " + NameOfTeam);
 
             ResultSet r = p.executeQuery();
             while (r.next()) {
                 String id = r.getString("Name");
                 players.add(id);
-                
 
             }
         } catch (SQLException e) {
-             System.out.println("No such List");
+            System.out.println("No such List");
 
         }
         return players;
     }
+
+    public static ArrayList PrintAmountsFromTable(String NameOfTeam) throws SQLException {
+        ArrayList Amount = new ArrayList();
+
+        try {
+            Connection db = DriverManager.getConnection("jdbc:sqlite:testi.db");
+            Statement Sakkokassa = db.createStatement();
+            PreparedStatement p = db.prepareStatement("SELECT ToPay FROM " + NameOfTeam);
+
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+                int amount = r.getInt("ToPay");
+                Amount.add(amount);
+
+            }
+        } catch (SQLException e) {
+            System.out.println("No such List");
+
+        }
+        return Amount;
+    }
+
+    public static ArrayList PrintNameAmountOFAll(String NameOfTeam) throws SQLException {
+        ArrayList<Sakotettavia> NameAmmount = new ArrayList();
+
+        try {
+            Connection db = DriverManager.getConnection("jdbc:sqlite:testi.db");
+            Statement Sakkokassa = db.createStatement();
+            PreparedStatement p = db.prepareStatement("SELECT Name,ToPay FROM " + NameOfTeam);
+
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+                String Name = r.getString("Name");
+                int Amount = r.getInt("ToPay");
+
+                NameAmmount.add(new Sakotettavia(Name, Amount));
+
+            }
+        } catch (SQLException e) {
+            System.out.println("No such List");
+
+        }
+        return NameAmmount;
+    }
+
+    public static boolean KassaTableExists(String NameOfTeam) throws SQLException{
+        Connection db = DriverManager.getConnection("jdbc:sqlite:testi.db");
+        DatabaseMetaData dbm = db.getMetaData();
+// check if "employee" table is there
+        ResultSet tables = dbm.getTables(null, null, NameOfTeam, null);
+        if (tables.next()) {
+            db.close();
+            return true;
+        } else {
+            db.close();
+            return false;
+        }
+
+    }
 }
 
 
-    
