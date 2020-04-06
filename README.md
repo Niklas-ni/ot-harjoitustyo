@@ -12,9 +12,9 @@ Se on tehty helpottamaan kirjanpitoa. Tarkoitus on pystyä lisäämään joukkue
 
 ## Testaus
 
-Lähdekoodi kootaan komenolla.
+Ohjelma suoritetaan komennolla
 
-*mvn compile:* 
+*mvn compile exec:java -Dexec.mainClass=Sakkokassa.main.Main* 
 
 Testit suoritetaan komennolla
 
