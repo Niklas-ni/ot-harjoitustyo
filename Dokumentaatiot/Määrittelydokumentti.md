@@ -30,6 +30,18 @@ kassavastaava nappi johon voi syöttää nimen ja salasanan.
 Jolloin uusi ikkuna avautuu missä on nimet ja sakot ja mahdollisuudet lisätä ja poistaa.
 ja luo uusi nappi jolloin avautuu uusi ikkuna missä voi tehdä uuden kassan salasanan kanssa.
 
+## **Toiminnallisuus:**
+
+Uuden kassan lisääminen (tehty)
+Uuteen kassaan pääsy jos tietää nimen (tehty)
+Passwordin talletus 
+Lista pelaajista jotka ovat kassassa ja niiden sakkoja
+Jos tiedät passwordin niin mahdollisuus lisätä pelaajia
+Jos tiedät passwordin niin mahdollisuus lisätä sakkoja
+Poistua sivusta kun valmis (tehty)
+Lista toteutus pelaajista ja sakoista muotoa Nimi / Sakko.
+
+
 ## **Perusversion tarjonta**
 
 * Käyttääjän on alussa tehtävä uusi kassa. 
