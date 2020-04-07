@@ -1,7 +1,7 @@
 
-## Arkkitehtuurikuvaus
+# Arkkitehtuurikuvaus
 
-##´Rakenne
+## Rakenne
 
 Olen tehnyt pakkaukset:
 * Sakkokassa.kassaui
