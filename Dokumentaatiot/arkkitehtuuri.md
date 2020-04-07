@@ -23,13 +23,13 @@ Liittymässä on kolme eri näkymää
 ## Käyttöliittymäluonnos
 SakkokassaLogin
 
-![Luonnos](Kuvat/SakkokassaLogin.PNG)
+![Luonnos](Kuvat/SakkokassaLogin.png)
 
 Käyttäjä haluaa kirjautua jollekin kassalle pitää tietää nimi. kuvassa henkilö menee sisälle Tps sakkokassaan
 kassaui kysyy domainilta jos tps on kassa. domain vuorostaan kysyy sql:lltä jos on joka palauttaa true koska Tps on kassa.
 Tämän jälkeen siirytään CashBoxScenen jossa näkyy tietoja.
 
-![Luonnos](Kuvat/SakkokassaCreate.PNG)
+![Luonnos](Kuvat/SakkokassaCreate.png)
 
 käyttäjä painaa nappia create jossa tulee näkyviin kaksi tekstipalkkia toisessa on joukkue ja toisessa salasana.
 kun täytä nämä ja painaa create nappia niin kassui kysyy domainilta jos voi lisätä domain kysyy taas sql:lltä 
