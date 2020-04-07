@@ -133,10 +133,9 @@ public class Sqlconnection {
         if (tables.next()) {
             db.close();
             return true;
-        } else {
-            db.close();
-            return false;
         }
-
+        db.close();
+        return false;
     }
+
 }

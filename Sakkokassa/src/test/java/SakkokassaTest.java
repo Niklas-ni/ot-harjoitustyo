@@ -1,7 +1,9 @@
 
-import sql.Sqlconnection;
 import domain.Kassa;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -13,6 +15,13 @@ public class SakkokassaTest {
 
     public SakkokassaTest() {
     }
+    private String team1 = "TPS";
+    private String team2 = "HIfk";
+    private String team3 = "IFK";
+    private String team4 = "HPK";
+    private String team5 = "FBC";
+    private String team6 = "TOR";
+    private String password = "password";
 
     @BeforeClass
     public static void setUpClass() {
@@ -20,8 +29,23 @@ public class SakkokassaTest {
     }
 
     @AfterClass
-    public static void tearDownClass() {
-
+    public static void tearDownClass() throws SQLException {
+        String team1 = "TPS";
+        String team2 = "HIfk";
+        String team3 = "IFK";
+        String team4 = "HPK";
+        String team5 = "FBC";
+        String team6 = "TOR";
+        Connection db = DriverManager.getConnection("jdbc:sqlite:testi.db");
+        Statement sakkokassa = db.createStatement();
+        sakkokassa.execute("DROP TABLE " + team1);
+        sakkokassa.execute("DROP TABLE " + team2);
+        sakkokassa.execute("DROP TABLE " + team3);
+        sakkokassa.execute("DROP TABLE " + team4);
+        sakkokassa.execute("DROP TABLE " + team5);
+        
+       
+        
     }
 
     @Before
@@ -33,40 +57,48 @@ public class SakkokassaTest {
     }
 
     @Test
-    public void CreateKassa() throws SQLException {
-        String team = "TPS";
-        assertEquals(true, Kassa.newcashbox(team));
+    public void createKassa() throws SQLException {
+        assertEquals(true, Kassa.newcashbox(team1));
 
     }
 
     @Test
-    public void CreateDuplicateKassa() throws SQLException {
-        String team = "HIFK";
-        Kassa.newcashbox(team);
-        assertEquals(false, Kassa.newcashbox(team));
+    public void createDuplicateKassa() throws SQLException {
+        Kassa.newcashbox(team2);
+        assertEquals(false, Kassa.newcashbox(team2));
 
     }
 
     @Test
-    public void AddPlayerWithoutToPayKassa() throws SQLException {
-        String team = "IFK";
-        Kassa.isacashbox(team);
-        assertEquals(true, Kassa.isacashbox(team));
+    public void kassaExists() throws SQLException {
+        Kassa.newcashbox(team3);
+        assertEquals(true, Kassa.isacashbox(team3));
+
+    }
+    @Test
+    public void kassaNotExisting() throws SQLException {
+        assertEquals(false, Kassa.isacashbox(team6));
 
     }
 
     @Test
-    public void Addcashboxandpassword() throws SQLException {
-        String team = "HPK";
-        String password = "password";
-        assertEquals(true, Kassa.newcashboxpassword(team, password));
+    public void addCashboxandpassword() throws SQLException {
+        assertEquals(true, Kassa.newcashboxpassword(team4, password));
+    }
+    @Test
+    public void addCashboxandpassworddubble() throws SQLException {
+        assertEquals(false, Kassa.newcashboxpassword(team4, password));
     }
 
     @Test
-    public void Checkpassword() throws SQLException {
-        String team = "HPK";
-        String password = "password";
-        assertEquals(true, Kassa.checkpassword(team, password));
+    public void checkPassword() throws SQLException {
+        Kassa.newcashboxpassword(team5, password);
+        assertEquals(true, Kassa.checkpassword(team5, password));
     }
+    @Test
+    public void wrongPassword() throws SQLException {        
+        assertEquals(false, Kassa.checkpassword(team5, "pear"));
+    }
+    
 
 }

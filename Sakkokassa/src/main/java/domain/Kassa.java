@@ -25,15 +25,16 @@ public class Kassa {
     }
 
     public static boolean isacashbox(String name) throws SQLException {
-        return !Sqlconnection.tableExists(name);
+        return Sqlconnection.tableExists(name);
     }
 
     public static boolean checkpassword(String team, String password) {
-        if (TAble.get(team).equals(password)) {
-            return true;
+        if (TAble.containsKey(team)) {
+            if (TAble.get(team).equals(password)) {
+                return true;
+            }
         }
         return false;
     }
-    
 
 }
