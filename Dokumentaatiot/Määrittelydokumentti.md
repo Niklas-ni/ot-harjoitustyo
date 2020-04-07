@@ -32,14 +32,14 @@ ja luo uusi nappi jolloin avautuu uusi ikkuna missä voi tehdä uuden kassan sal
 
 ## **Toiminnallisuus:**
 
-Uuden kassan lisääminen (tehty)
-Uuteen kassaan pääsy jos tietää nimen (tehty)
-Passwordin talletus 
-Lista pelaajista jotka ovat kassassa ja niiden sakkoja
-Jos tiedät passwordin niin mahdollisuus lisätä pelaajia
-Jos tiedät passwordin niin mahdollisuus lisätä sakkoja
-Poistua sivusta kun valmis (tehty)
-Lista toteutus pelaajista ja sakoista muotoa Nimi / Sakko.
+* Uuden kassan lisääminen (tehty)
+* Uuteen kassaan pääsy jos tietää nimen (tehty)
+* Passwordin talletus 
+* Lista pelaajista jotka ovat kassassa ja niiden sakkoja
+* Jos tiedät passwordin niin mahdollisuus lisätä pelaajia
+* Jos tiedät passwordin niin mahdollisuus lisätä sakkoja
+* Poistua sivusta kun valmis (tehty)
+* Lista toteutus pelaajista ja sakoista muotoa Nimi / Sakko.
 
 
 ## **Perusversion tarjonta**
