@@ -8,5 +8,6 @@ Pvm  |  Aika(h)  | Työ
 04.04 | 5  | JavaFX kokeilua ja muotoilua. Sakkokassa metodien tekoa ilman sql
 05.04 | 6  | JavaFx edistystä ja vähän joka paikkaan uusia asioita. tiedostojen järjestäminen.
 06.04 | 4  | Testien tekoa ja Checkstyle
+07.04 | 4  | Testien tietokanta talletuksen korjaus arkkitehtuurin päivittäminen 
 ------|----|------------
-00.00 | 31 | AikaYhteensä
+00.00 | 35 | AikaYhteensä

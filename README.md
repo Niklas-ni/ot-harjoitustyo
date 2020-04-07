@@ -6,9 +6,10 @@ Se on tehty helpottamaan kirjanpitoa. Tarkoitus on pystyä lisäämään joukkue
 
 ## Dokumentaatiot
 
-[Dokumentaatiot](https://github.com/Niklas-ni/ot-harjoitustyo/tree/master/Dokumentaatiot)
-[Työaikakirjanpito](https://github.com/Niklas-ni/ot-harjoitustyo/blob/master/Dokumentaatiot/ty%C3%B6aikakirjanpito.md)
-[Vaativuusmäärittely](https://github.com/Niklas-ni/ot-harjoitustyo/blob/master/Dokumentaatiot/M%C3%A4%C3%A4rittelydokumentti.md)
+* [Dokumentaatiot](https://github.com/Niklas-ni/ot-harjoitustyo/tree/master/Dokumentaatiot)
+* [Työaikakirjanpito](https://github.com/Niklas-ni/ot-harjoitustyo/blob/master/Dokumentaatiot/ty%C3%B6aikakirjanpito.md)
+* [Vaativuusmäärittely](https://github.com/Niklas-ni/ot-harjoitustyo/blob/master/Dokumentaatiot/M%C3%A4%C3%A4rittelydokumentti.md)
+* [Arkkitehtuuri](https://github.com/Niklas-ni/ot-harjoitustyo/blob/master/Dokumentaatiot/arkkitehtuuri.md)
 
 ## Testaus
 
