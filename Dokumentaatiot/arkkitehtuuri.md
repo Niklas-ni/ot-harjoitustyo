@@ -22,6 +22,18 @@ Liittymässä on kolme eri näkymää
 * Kassa näkymässä voi sitten täyttää password tiedon. jolloin näkymään tulee näkyviin add player ja add sakko. 
 
 ## Käyttöliittymäluonnos
+
+SakkokassaLuokkakaavio
+
+![Luonnos](Kuvat/LuokkaKaavio.png)
+
+Meillä on käytössa ui osuus joka on vain käyttöliitymän näkymä.
+Domainissa voidaan käsitellä kassoja lisätä nimi ja vaihdella sakkoja.
+kaikki työ on tarkoitus tehdä tässä osassa.
+Lopuksi meillä on DaoSQL osa johon sitten tallenetaan tietokantaan tieto joka
+pitää tallentaa. Joukkuekassoja jossa pelaajia ja sakkoja mitä itää maksaa.
+
+
 SakkokassaLogin
 
 ![Luonnos](Kuvat/SakkokassaLogin.png)
