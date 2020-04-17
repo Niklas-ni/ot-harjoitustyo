@@ -1,5 +1,6 @@
 package kassaui;
 
+import domain.PayBoxTable;
 import domain.Kassa;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -9,6 +10,7 @@ import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -24,11 +26,12 @@ public class MainSakkoKassa extends Application {
     private Scene paytableScene;
     private Scene newCashBoxScene;
     private Scene loginScene;
-
+    private Scene AdminScene;
+    private String User;
     private VBox todoNodes;
 
     private Label menuLabel = new Label();
-
+    private PayBoxTable table = new PayBoxTable();
     @Override
     public void init() throws Exception {
     }
@@ -40,6 +43,7 @@ public class MainSakkoKassa extends Application {
         loginPane.setPadding(new Insets(10));
         Label loginLabel = new Label("Team Name");
         TextField usernameInput = new TextField();
+       
 
         inputPane.getChildren().addAll(loginLabel, usernameInput);
         Label loginMessage = new Label();
@@ -47,11 +51,11 @@ public class MainSakkoKassa extends Application {
         Button loginButton = new Button("login");
         Button createButton = new Button("create new Team CashBox");
         loginButton.setOnAction(e -> {
-            String username = usernameInput.getText();
-            menuLabel.setText("Team: " + username + ":s CashBox Situation");
+            User = usernameInput.getText();
+            menuLabel.setText("Team: " + usernameInput.getText() + ":s CashBox Situation");
 
             try {
-                if (domain.Kassa.isacashbox(username)) {
+                if (domain.Kassa.isacashbox(usernameInput.getText())) {
                     loginMessage.setText("");
                     primaryStage.setScene(paytableScene);
                     usernameInput.setText("");
@@ -84,7 +88,8 @@ public class MainSakkoKassa extends Application {
 
         HBox newNamePane = new HBox(10);
         newNamePane.setPadding(new Insets(10));
-        TextField newPasswordInput = new TextField();
+        PasswordField newPasswordInput = new PasswordField();
+        newPasswordInput.setPromptText("Your password");
         Label newNameLabel = new Label("Password");
         newNameLabel.setPrefWidth(100);
         newNamePane.getChildren().addAll(newNameLabel, newPasswordInput);
@@ -103,6 +108,8 @@ public class MainSakkoKassa extends Application {
                 userCreationMessage.setTextFill(Color.RED);
             } else try {
                 if (Kassa.newcashboxpassword(username, Password)) {
+                    table.setName(username);
+                    table.setPassword(Password);
                     userCreationMessage.setText("");
                     loginMessage.setText("new CashBox created");
                     loginMessage.setTextFill(Color.GREEN);
@@ -134,11 +141,36 @@ public class MainSakkoKassa extends Application {
         });
 
         HBox createForm = new HBox(10);
-        Button Password = new Button("Password");
+        Button Password = new Button("Admin");
         Region spacer = new Region();
         HBox.setHgrow(spacer, Priority.ALWAYS);
         TextField PasswordInput = new TextField();
         createForm.getChildren().addAll(PasswordInput, spacer, Password);
+        Label PasswordMessage = new Label();
+        Password.setOnAction(e -> {
+            if (PasswordInput.getText().equals(table.getPassword())){
+            System.out.println(User);
+                System.out.println(table.getPassword());
+        
+            primaryStage.setScene(AdminScene);
+            }
+            else {
+                System.out.println("wrong");
+                System.out.println(table.getPassword());
+            }
+            
+        });
+        
+        /*Password.setOnAction(e -> {
+            if (Kassa.checkpassword(usernameInput.getText(), PasswordInput.getText())) {
+                primaryStage.setScene(AdminScene);
+                System.out.println("Im Here");
+            } else {
+                PasswordMessage.setText("No Such Team");
+                PasswordMessage.setTextFill(Color.RED);
+            }
+
+        });*/
 
         todoNodes = new VBox(10);
         todoNodes.setMaxWidth(280);
@@ -147,9 +179,37 @@ public class MainSakkoKassa extends Application {
         CashBoxScollbar.setContent(todoNodes);
         mainPane.setBottom(createForm);
         mainPane.setTop(menuPane);
+        
+        ScrollPane CashBoxAdminScollbar = new ScrollPane();
+        BorderPane mainAdminPane = new BorderPane(CashBoxAdminScollbar);
+        AdminScene = new Scene(mainAdminPane, 300, 250);
 
-        Password.setOnAction(e -> {
+        HBox menuAdminPane = new HBox(10);
+        Region menuAdminSpacer = new Region();
+        HBox.setHgrow(menuAdminSpacer, Priority.ALWAYS);
+        Button BackAdminButton = new Button("Back");
+        menuAdminPane.getChildren().addAll(BackAdminButton);
+        BackAdminButton.setOnAction(e -> {
+            primaryStage.setScene(paytableScene);
         });
+
+        HBox createAdminForm = new HBox(10);
+        Button playerAmount = new Button("AddToPlayer");
+        Region adminSpacer = new Region();
+        HBox.setHgrow(adminSpacer, Priority.ALWAYS);
+        TextField AdminPlayer = new TextField("Player");
+        TextField AdminAmmount = new TextField("Amount");
+        createAdminForm.getChildren().addAll(AdminPlayer,AdminAmmount, adminSpacer, playerAmount);
+        
+
+        todoNodes = new VBox(10);
+        todoNodes.setMaxWidth(280);
+        todoNodes.setMinWidth(280);
+
+        CashBoxAdminScollbar.setContent(todoNodes);
+        mainAdminPane.setBottom(createAdminForm);
+        mainAdminPane.setTop(menuAdminPane);
+
 
         primaryStage.setTitle("SakkoKassa");
         primaryStage.setScene(loginScene);
@@ -158,7 +218,7 @@ public class MainSakkoKassa extends Application {
             System.out.println("closing");
 
         });
-    }
+    };
 
     @Override
     public void stop() {

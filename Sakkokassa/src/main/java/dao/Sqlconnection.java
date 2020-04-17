@@ -1,12 +1,14 @@
-package sql;
+package dao;
 
 import java.sql.*;
 import java.util.ArrayList;
 import domain.Sakotettavia;
+import domain.PayBoxTable;
+import java.util.Set;
 
-public class Sqlconnection {
+public class Sqlconnection implements CashBoxdao {
 
-    public static boolean createTable(String nameOfTeam) throws SQLException {
+    public static boolean createPayboxTable(String nameOfTeam) throws SQLException {
         try {
             Connection db = DriverManager.getConnection("jdbc:sqlite:testi.db");
             Statement sakkokassa = db.createStatement();
@@ -136,6 +138,69 @@ public class Sqlconnection {
         }
         db.close();
         return false;
+    }
+
+    @Override
+    public boolean insertPayBoxTable(PayBoxTable payboxtable) {
+        try {
+            Connection db = DriverManager.getConnection("jdbc:sqlite:testi.db");
+            PreparedStatement p = db.prepareStatement("INSERT INTO TablesPasswords (Name,Password) VALUES (?,?)");
+            p.setString(1, payboxtable.getName());
+            p.setString(2, payboxtable.getPassword());
+            p.executeUpdate();
+        } catch (SQLException e) {
+            System.out.println(e);
+            System.out.println("Table exist");
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean deletePayboxtable(PayBoxTable payboxtable) {
+        try {
+            Connection db = DriverManager.getConnection("jdbc:sqlite:testi.db");
+            PreparedStatement p = db.prepareStatement("DELETE FROM TablesPasswords WHERE Name = ?");
+            p.setString(1, payboxtable.getName());
+            p.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public boolean createPayBoxTable() {
+        try {
+            Connection db = DriverManager.getConnection("jdbc:sqlite:testi.db");
+            Statement sakkokassa = db.createStatement();
+            sakkokassa.execute("CREATE TABLE TablesPasswords (Name TEXT UNIQUE, Password TEXT)");
+        } catch (SQLException e) {
+            System.out.println(e);
+            System.out.println("Allready existing choose another:");
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String getpasswordPayboxtable(PayBoxTable payboxtable) {
+        String password = "";
+        try {
+            Connection db = DriverManager.getConnection("jdbc:sqlite:testi.db");
+            PreparedStatement p = db.prepareStatement("SELECT Password FROM " + payboxtable.getName());
+
+            ResultSet r = p.executeQuery();
+            while (r.next()) {
+                password = r.getString("Password");
+
+            }
+        } catch (SQLException e) {
+            System.out.println("No such List");
+
+        }
+        return password;
     }
 
 }

@@ -9,5 +9,7 @@ Pvm  |  Aika(h)  | Työ
 05.04 | 6  | JavaFx edistystä ja vähän joka paikkaan uusia asioita. tiedostojen järjestäminen.
 06.04 | 4  | Testien tekoa ja Checkstyle
 07.04 | 4  | Testien tietokanta talletuksen korjaus arkkitehtuurin päivittäminen 
+12.04 | 2  | Luokkakaavion ja sekvenssikaavion lisääminen arkitehtuuriin
+13.04 | 5  | Neljäs näkymä JavaFX:ään. Dao luokan lisääminen ja toimivuuden miettiminen
 ------|----|------------
-00.00 | 35 | AikaYhteensä
+00.00 | 40 | AikaYhteensä

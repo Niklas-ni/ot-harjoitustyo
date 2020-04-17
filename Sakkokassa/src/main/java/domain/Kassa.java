@@ -1,6 +1,7 @@
 package domain;
 
-import sql.Sqlconnection;
+import dao.Sqlconnection;
+import domain.Sakotettavia;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +12,7 @@ public class Kassa {
     private static final HashMap<String, String> TAble = new HashMap<>();
 
     public static boolean newcashboxpassword(String name, String password) throws SQLException {
-        if (Sqlconnection.createTable(name)) {
+        if (Sqlconnection.createPayboxTable(name)) {
             TAble.put(name, password);
             return true;
         }
@@ -20,7 +21,7 @@ public class Kassa {
     }
 
     public static boolean newcashbox(String username) throws SQLException {
-        return Sqlconnection.createTable(username);
+        return Sqlconnection.createPayboxTable(username);
 
     }
 
@@ -35,6 +36,15 @@ public class Kassa {
             }
         }
         return false;
+    }
+    
+    public static ArrayList getAllplayersAmounts(String team) throws SQLException{
+        ArrayList<String> pelaajat = new ArrayList<>();
+        for (Object pelaajia  : Sqlconnection.printEverything(team)) {
+            pelaajat.add(String.valueOf(pelaajia));
+        }
+        
+        return pelaajat;
     }
 
 }
