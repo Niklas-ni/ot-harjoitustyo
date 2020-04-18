@@ -1,20 +1,21 @@
-
 package domain;
 
+import java.util.ArrayList;
 
 public class PayBoxTable {
+
     private String name;
     private String password;
 
     public PayBoxTable() {
     }
-    
+
     public PayBoxTable(String name, String password) {
-    this.name = name;
-    this.password = password;
+        this.name = name;
+        this.password = password;
+
     }
 
-    
     public String getName() {
         return name;
     }
@@ -30,10 +31,4 @@ public class PayBoxTable {
     public void setPassword(String password) {
         this.password = password;
     }
-
-
-    
-    
-    
-    
 }

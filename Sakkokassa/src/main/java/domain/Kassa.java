@@ -8,20 +8,18 @@ import java.util.HashMap;
 
 public class Kassa {
 
+    private static PayBoxTable tables;
     private Sakotettavia players;
-    private static final HashMap<String, String> TAble = new HashMap<>();
+    private static ArrayList<PayBoxTable> boxes = new ArrayList<>();
 
     public static boolean newcashboxpassword(String name, String password) throws SQLException {
         if (Sqlconnection.createPayboxTable(name)) {
-            TAble.put(name, password);
+            tables = new PayBoxTable(name, password);
+            boxes.add(tables);
+            
             return true;
         }
         return false;
-
-    }
-
-    public static boolean newcashbox(String username) throws SQLException {
-        return Sqlconnection.createPayboxTable(username);
 
     }
 
@@ -30,12 +28,11 @@ public class Kassa {
     }
 
     public static boolean checkpassword(String team, String password) {
-        if (TAble.containsKey(team)) {
-            if (TAble.get(team).equals(password)) {
+
                 return true;
-            }
-        }
-        return false;
+           
+        
+       
     }
     
     public static ArrayList getAllplayersAmounts(String team) throws SQLException{

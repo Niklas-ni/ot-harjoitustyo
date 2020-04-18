@@ -4,10 +4,18 @@ public class Sakotettavia {
 
     private String name;
     private int ammount;
+    private int id= 0;
 
-    public Sakotettavia(String name, int ammount) {
+    public Sakotettavia(int id, String name, int ammount) {
         this.ammount = ammount;
         this.name = name;
+        this.id = id;
+    }
+
+    public Sakotettavia(String name, int ammount) {
+        this.name = name;
+        this.ammount = ammount;
+
     }
 
     public int getAmmount() {

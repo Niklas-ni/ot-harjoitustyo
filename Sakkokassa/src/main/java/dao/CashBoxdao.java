@@ -2,17 +2,15 @@
 package dao;
 
 import domain.PayBoxTable;
-import java.util.Set;
+import java.util.ArrayList;
 
 
 public interface CashBoxdao {
-    boolean createPayBoxTable();
+    
+    boolean create(PayBoxTable teamstable);
 
-    boolean insertPayBoxTable(PayBoxTable payboxtable);
+    PayBoxTable findByname(String teamname);
 
-    boolean deletePayboxtable(PayBoxTable payboxtable);
-    
-    String getpasswordPayboxtable(PayBoxTable payBoxTable);
-    
-    
+    ArrayList<PayBoxTable> getAll();
+
 }
