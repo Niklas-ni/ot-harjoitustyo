@@ -16,7 +16,6 @@ public class Payboxservice {
 
     public boolean login(String username) {
         PayBoxTable user = userDao.findByname(username);
-        System.out.println(username);
         if (user == null) {
             return false;
         }

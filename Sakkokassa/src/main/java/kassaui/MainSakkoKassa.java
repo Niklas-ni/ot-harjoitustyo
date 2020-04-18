@@ -1,12 +1,10 @@
 package kassaui;
 
 import domain.Payboxservice;
-import dao.CashBoxdao;
 import dao.SqlCashboxdao;
-import domain.PayBoxTable;
-import domain.Kassa;
+import dao.sqlPlayerdao;
+import domain.PlayerService;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
@@ -27,13 +25,14 @@ import javafx.stage.Stage;
 
 public class MainSakkoKassa extends Application {
 
+    private PlayerService playerservice;
     private Payboxservice payboxservice;
     private Scene paytableScene;
     private Scene newCashBoxScene;
     private Scene loginScene;
     private Scene AdminScene;
     private String User;
-    private VBox todoNodes;
+    private VBox players;
 
     private Label menuLabel = new Label();
 
@@ -60,10 +59,16 @@ public class MainSakkoKassa extends Application {
         loginButton.setOnAction(e -> {
             User = usernameInput.getText();
             menuLabel.setText("Team: " + usernameInput.getText() + ":s CashBox Situation");
-            
 
             if (payboxservice.login(usernameInput.getText())) {
                 loginMessage.setText("");
+                try {
+                sqlPlayerdao test = new sqlPlayerdao(User);
+                PlayerService testi = new PlayerService(test);
+                this.playerservice = testi;
+                } catch (SQLException ex) {
+                    Logger.getLogger(MainSakkoKassa.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 primaryStage.setScene(paytableScene);
                 usernameInput.setText("");
             } else {
@@ -127,12 +132,12 @@ public class MainSakkoKassa extends Application {
         newCashBoxScene = new Scene(newUserPane, 300, 250);
         ScrollPane CashBoxScollbar = new ScrollPane();
         BorderPane mainPane = new BorderPane(CashBoxScollbar);
-        paytableScene = new Scene(mainPane, 300, 250);
+        paytableScene = new Scene(mainPane, 350, 450);
 
         HBox menuPane = new HBox(10);
         Region menuSpacer = new Region();
         HBox.setHgrow(menuSpacer, Priority.ALWAYS);
-        Button logoutButton = new Button("logout");
+        Button logoutButton = new Button("Logout");
         menuPane.getChildren().addAll(menuLabel, menuSpacer, logoutButton);
         logoutButton.setOnAction(e -> {
             primaryStage.setScene(loginScene);
@@ -147,30 +152,20 @@ public class MainSakkoKassa extends Application {
         Label PasswordMessage = new Label();
         Password.setOnAction(e -> {
             if (PasswordInput.getText().equals(payboxservice.getLoggedUser().getPassword())) {
-                
 
                 primaryStage.setScene(AdminScene);
             } else {
-                PasswordInput.setText("Wrong Password");                
+                PasswordInput.setText("Wrong Password");
+
             }
 
         });
 
-        /*Password.setOnAction(e -> {
-            if (Kassa.checkpassword(usernameInput.getText(), PasswordInput.getText())) {
-                primaryStage.setScene(AdminScene);
-                System.out.println("Im Here");
-            } else {
-                PasswordMessage.setText("No Such Team");
-                PasswordMessage.setTextFill(Color.RED);
-            }
+        players = new VBox(10);
+        players.setMaxWidth(280);
+        players.setMinWidth(280);
 
-        });*/
-        todoNodes = new VBox(10);
-        todoNodes.setMaxWidth(280);
-        todoNodes.setMinWidth(280);
-
-        CashBoxScollbar.setContent(todoNodes);
+        CashBoxScollbar.setContent(players);
         mainPane.setBottom(createForm);
         mainPane.setTop(menuPane);
 
@@ -195,15 +190,15 @@ public class MainSakkoKassa extends Application {
         TextField AdminAmmount = new TextField("Amount");
         createAdminForm.getChildren().addAll(AdminPlayer, AdminAmmount, adminSpacer, playerAmount);
 
-        todoNodes = new VBox(10);
-        todoNodes.setMaxWidth(280);
-        todoNodes.setMinWidth(280);
+        players = new VBox(10);
+        players.setMaxWidth(280);
+        players.setMinWidth(280);
 
-        CashBoxAdminScollbar.setContent(todoNodes);
+        CashBoxAdminScollbar.setContent(players);
         mainAdminPane.setBottom(createAdminForm);
         mainAdminPane.setTop(menuAdminPane);
 
-        primaryStage.setTitle("SakkoKassa");
+        primaryStage.setTitle("PayTables");
         primaryStage.setScene(loginScene);
         primaryStage.show();
         primaryStage.setOnCloseRequest(e -> {
@@ -217,12 +212,12 @@ public class MainSakkoKassa extends Application {
     @Override
     public void stop() {
         // tee lopetustoimenpiteet täällä
-        System.out.println("sovellus sulkeutuu");
+        System.out.println("Good bye!");
     }
 
     public static void main(String[] args) throws SQLException, Exception {
         launch(args);
-
+     
     }
 
 }
