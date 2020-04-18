@@ -12,6 +12,6 @@ Pvm  |  Aika(h)  | Työ
 12.04 | 2  | Luokkakaavion ja sekvenssikaavion lisääminen arkitehtuuriin
 13.04 | 5  | Neljäs näkymä JavaFX:ään. Dao luokan lisääminen ja toimivuuden miettiminen
 17.04 | 5  | Dao opettelua
-18.04 | 3  | Dao rajapinnan parantelua.
+18.04 | 8  | Dao rajapinnan parantelua. kokeilua chubblilla. toimii macilla.
 ------|----|------------
-00.00 | 48 | AikaYhteensä
+00.00 | 55 | AikaYhteensä
