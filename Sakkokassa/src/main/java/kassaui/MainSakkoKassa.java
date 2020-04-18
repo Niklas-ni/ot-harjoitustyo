@@ -39,8 +39,8 @@ public class MainSakkoKassa extends Application {
     @Override
     public void init() throws Exception {
         SqlCashboxdao test = new SqlCashboxdao();
-        Payboxservice testi = new Payboxservice(test);
-        this.payboxservice = testi;
+        Payboxservice test1 = new Payboxservice(test);
+        this.payboxservice = test1;
     }
 
     @Override
@@ -77,6 +77,7 @@ public class MainSakkoKassa extends Application {
                     loginMessage.setTextFill(Color.RED);
                 }
             } catch (SQLException ex) {
+                System.out.println(ex);
                 Logger.getLogger(MainSakkoKassa.class.getName()).log(Level.SEVERE, null, ex);
             }
 
@@ -119,7 +120,8 @@ public class MainSakkoKassa extends Application {
             if (username.length() == 2 || Password.length() < 4) {
                 userCreationMessage.setText("TeamName or Password too short. Team name > 2, password > 4");
                 userCreationMessage.setTextFill(Color.RED);
-            } else try {
+            }
+            try {
                 if (payboxservice.createUser(username, Password)) {
                     userCreationMessage.setText("");
                     loginMessage.setText("new CashBox created");
@@ -225,7 +227,7 @@ public class MainSakkoKassa extends Application {
 
     public static void main(String[] args) throws SQLException, Exception {
         launch(args);
-     
+
     }
 
 }
