@@ -1,6 +1,7 @@
 package domain;
 
 import dao.CashBoxdao;
+import java.sql.SQLException;
 
 public class Payboxservice {
 
@@ -14,7 +15,7 @@ public class Payboxservice {
     
 
 
-    public boolean login(String username) {
+    public boolean login(String username) throws SQLException {
         PayBoxTable user = userDao.findByname(username);
         if (user == null) {
             return false;
@@ -34,7 +35,7 @@ public class Payboxservice {
     }
 
    
-    public boolean createUser(String teamname, String password) {
+    public boolean createUser(String teamname, String password) throws SQLException {
         if (userDao.findByname(teamname) != null) {
             return false;
         }

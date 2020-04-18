@@ -60,20 +60,24 @@ public class MainSakkoKassa extends Application {
             User = usernameInput.getText();
             menuLabel.setText("Team: " + usernameInput.getText() + ":s CashBox Situation");
 
-            if (payboxservice.login(usernameInput.getText())) {
-                loginMessage.setText("");
-                try {
-                SqlPlayerdao test = new SqlPlayerdao(User);
-                PlayerService testi = new PlayerService(test);
-                this.playerservice = testi;
-                } catch (SQLException ex) {
-                    Logger.getLogger(MainSakkoKassa.class.getName()).log(Level.SEVERE, null, ex);
+            try {
+                if (payboxservice.login(usernameInput.getText())) {
+                    loginMessage.setText("");
+                    try {
+                        SqlPlayerdao test = new SqlPlayerdao(User);
+                        PlayerService testi = new PlayerService(test);
+                        this.playerservice = testi;
+                    } catch (SQLException ex) {
+                        Logger.getLogger(MainSakkoKassa.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    primaryStage.setScene(paytableScene);
+                    usernameInput.setText("");
+                } else {
+                    loginMessage.setText("No Such Team");
+                    loginMessage.setTextFill(Color.RED);
                 }
-                primaryStage.setScene(paytableScene);
-                usernameInput.setText("");
-            } else {
-                loginMessage.setText("No Such Team");
-                loginMessage.setTextFill(Color.RED);
+            } catch (SQLException ex) {
+                Logger.getLogger(MainSakkoKassa.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         });
@@ -115,14 +119,18 @@ public class MainSakkoKassa extends Application {
             if (username.length() == 2 || Password.length() < 4) {
                 userCreationMessage.setText("TeamName or Password too short. Team name > 2, password > 4");
                 userCreationMessage.setTextFill(Color.RED);
-            } else if (payboxservice.createUser(username, Password)) {
-                userCreationMessage.setText("");
-                loginMessage.setText("new CashBox created");
-                loginMessage.setTextFill(Color.GREEN);
-                primaryStage.setScene(loginScene);
-            } else {
-                userCreationMessage.setText("Team Already Made");
-                userCreationMessage.setTextFill(Color.RED);
+            } else try {
+                if (payboxservice.createUser(username, Password)) {
+                    userCreationMessage.setText("");
+                    loginMessage.setText("new CashBox created");
+                    loginMessage.setTextFill(Color.GREEN);
+                    primaryStage.setScene(loginScene);
+                } else {
+                    userCreationMessage.setText("Team Already Made");
+                    userCreationMessage.setTextFill(Color.RED);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(MainSakkoKassa.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         });
