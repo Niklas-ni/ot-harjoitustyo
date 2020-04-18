@@ -33,7 +33,15 @@ Suoritettavan jarin generointi Komento:
 mvn package:
 
 generoi hakemistoon target suoritettavan jar-tiedoston Sakkokassa-1.0-SNAPSHOT.jar
-JavaDoc
+
+Checkstyle
+
+Tiedostoon checkstyle.xml määrittelemät tarkistukset suoritetaan komennolla
+
+*mvn jxr:jxr checkstyle:checkstyle*
+
+Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto target/site/checkstyle.html
+
 
 JavaDoc generoidaan komennolla
 
