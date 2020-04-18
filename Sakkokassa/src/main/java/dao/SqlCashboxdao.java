@@ -17,9 +17,7 @@ public class SqlCashboxdao implements CashBoxdao {
             sakkokassa.execute("CREATE TABLE payboxtable (Name TEXT UNIQUE, Password TEXT)");
             sakkokassa.execute("PRAGMA foreign_keys = ON");
         } catch (SQLException e) {
-            System.out.println("Connected");
         }
-        System.out.println("Connected?");
     }
 
     @Override

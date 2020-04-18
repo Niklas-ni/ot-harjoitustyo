@@ -8,6 +8,7 @@ import java.util.List;
 public class SqlPlayerdao implements Playerdao {
 
     private ArrayList<Player> teams;
+    private Connection connection;
 
     public SqlPlayerdao(String team) throws SQLException {
         try {
@@ -16,8 +17,6 @@ public class SqlPlayerdao implements Playerdao {
             paytable.execute("CREATE TABLE " + team + " (id INTEGER PRIMARY KEY, Name TEXT UNIQUE, ToPay INTEGER)");
             paytable.execute("PRAGMA foreign_keys = ON");
         } catch (SQLException e) {
-            System.out.println(e);
-            System.out.println("Error");
         }
     }
 
@@ -72,4 +71,5 @@ public class SqlPlayerdao implements Playerdao {
         }
 
     }
+    
 }

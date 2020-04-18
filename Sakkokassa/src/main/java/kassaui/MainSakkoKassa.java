@@ -38,9 +38,11 @@ public class MainSakkoKassa extends Application {
 
     @Override
     public void init() throws Exception {
+        
         SqlCashboxdao test = new SqlCashboxdao();
         Payboxservice test1 = new Payboxservice(test);
         this.payboxservice = test1;
+        
     }
 
     @Override
@@ -64,9 +66,9 @@ public class MainSakkoKassa extends Application {
                 if (payboxservice.login(usernameInput.getText())) {
                     loginMessage.setText("");
                     try {
+                        
                         SqlPlayerdao test = new SqlPlayerdao(User);
                         PlayerService testi = new PlayerService(test);
-                        this.playerservice = testi;
                     } catch (SQLException ex) {
                         Logger.getLogger(MainSakkoKassa.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -213,6 +215,7 @@ public class MainSakkoKassa extends Application {
         primaryStage.show();
         primaryStage.setOnCloseRequest(e -> {
             System.out.println("closing");
+            
 
         });
     }
@@ -220,7 +223,7 @@ public class MainSakkoKassa extends Application {
     ;
 
     @Override
-    public void stop() {
+    public void stop() throws SQLException {
         // tee lopetustoimenpiteet täällä
         System.out.println("Good bye!");
     }
