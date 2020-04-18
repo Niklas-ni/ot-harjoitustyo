@@ -5,11 +5,11 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class sqlPlayerdao implements Playerdao {
+public class SqlPlayerdao implements Playerdao {
 
     private ArrayList<Player> teams;
 
-    public sqlPlayerdao(String team) throws SQLException {
+    public SqlPlayerdao(String team) throws SQLException {
         try {
             Connection db = DriverManager.getConnection("jdbc:sqlite:teamPlayers.db");
             Statement paytable = db.createStatement();
@@ -22,8 +22,8 @@ public class sqlPlayerdao implements Playerdao {
     }
 
     @Override
-    public boolean addPlayer(Player player) throws Exception {
-     try {
+    public boolean addPlayer(Player player) throws SQLException {
+        try {
             Connection db = DriverManager.getConnection("jdbc:sqlite:teamPlayers.db");
             PreparedStatement p = db.prepareStatement("INSERT INTO " + player.getPayBoxTable() + "(Name,ToPay) VALUES (?,?)");
             p.setString(1, player.getname());
@@ -38,8 +38,8 @@ public class sqlPlayerdao implements Playerdao {
     }
 
     @Override
-    public ArrayList<Player> getAll(Player player) {
-       try {
+    public ArrayList<Player> getAll(Player player) throws SQLException {
+        try {
             Connection db = DriverManager.getConnection("jdbc:sqlite:teamPlayers.db");
             PreparedStatement p = db.prepareStatement("SELECT Name,ToPay FROM " + player.getPayBoxTable());
 
@@ -59,8 +59,8 @@ public class sqlPlayerdao implements Playerdao {
     }
 
     @Override
-    public void uppdatePlayerAmmount(Player player) throws Exception {
-         try {
+    public void uppdatePlayerAmmount(Player player) throws SQLException {
+        try {
             Connection db = DriverManager.getConnection("jdbc:sqlite:teamPlayers.db");
             PreparedStatement p = db.prepareStatement("UPDATE " + player.getPayBoxTable() + " SET ToPay = ToPay + " + player.getAmmount() + " WHERE " + player.getPayBoxTable() + ".Name=?");
             p.setString(1, player.getname());
@@ -68,8 +68,8 @@ public class sqlPlayerdao implements Playerdao {
         } catch (SQLException e) {
             System.out.println(e);
             System.out.println("Does not exist!");
-            
+
         }
-     
+
     }
 }

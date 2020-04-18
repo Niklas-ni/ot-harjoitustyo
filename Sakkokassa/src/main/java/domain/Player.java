@@ -5,7 +5,6 @@ public class Player {
     private String name;
     private int ammount;
     private PayBoxTable payBoxTable;
-    
 
     public Player(String name, int ammount, PayBoxTable payBoxTable) {
         this.name = name;
@@ -13,9 +12,9 @@ public class Player {
         this.payBoxTable = payBoxTable;
     }
 
-    public Player(String name,PayBoxTable payBoxTable) {
+    public Player(String name, PayBoxTable payBoxTable) {
         this.name = name;
-        this.payBoxTable= payBoxTable;
+        this.payBoxTable = payBoxTable;
         this.ammount = 0;
     }
 
@@ -38,5 +37,5 @@ public class Player {
     public void setPayBoxTable(PayBoxTable payBoxTable) {
         this.payBoxTable = payBoxTable;
     }
-    
+
 }

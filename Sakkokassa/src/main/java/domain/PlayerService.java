@@ -1,6 +1,7 @@
 package domain;
 
 import dao.Playerdao;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PlayerService {
@@ -24,13 +25,13 @@ public class PlayerService {
         try {
             playerDao.uppdatePlayerAmmount(player);
 
-        } catch (Exception ex) {
-            System.out.println(ex);
+        } catch (SQLException e) {
+            System.out.println(e);
         }
-
     }
-    ArrayList<Player> getAll(Player player){
-       return playerDao.getAll(player);
+
+    ArrayList<Player> getAll(Player player) throws SQLException {
+        return playerDao.getAll(player);
     }
 
 }

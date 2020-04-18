@@ -2,7 +2,7 @@ package kassaui;
 
 import domain.Payboxservice;
 import dao.SqlCashboxdao;
-import dao.sqlPlayerdao;
+import dao.SqlPlayerdao;
 import domain.PlayerService;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -63,7 +63,7 @@ public class MainSakkoKassa extends Application {
             if (payboxservice.login(usernameInput.getText())) {
                 loginMessage.setText("");
                 try {
-                sqlPlayerdao test = new sqlPlayerdao(User);
+                SqlPlayerdao test = new SqlPlayerdao(User);
                 PlayerService testi = new PlayerService(test);
                 this.playerservice = testi;
                 } catch (SQLException ex) {
