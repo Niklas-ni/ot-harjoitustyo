@@ -19,6 +19,7 @@ public class SqlCashboxdao implements CashBoxdao {
         } catch (SQLException e) {
             System.out.println("Connected");
         }
+        System.out.println("Connected?");
     }
 
     @Override
