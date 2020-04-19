@@ -11,6 +11,10 @@ Se on tehty helpottamaan kirjanpitoa. Tarkoitus on pystyä lisäämään joukkue
 * [Vaativuusmäärittely](https://github.com/Niklas-ni/ot-harjoitustyo/blob/master/Dokumentaatiot/M%C3%A4%C3%A4rittelydokumentti.md)
 * [Arkkitehtuuri](https://github.com/Niklas-ni/ot-harjoitustyo/blob/master/Dokumentaatiot/arkkitehtuuri.md)
 
+## Viikko 5 Release
+
+* [Release](https://github.com/Niklas-ni/ot-harjoitustyo/releases/tag/v1.0)
+
 ## Testaus
 
 Ohjelma suoritetaan komennolla
