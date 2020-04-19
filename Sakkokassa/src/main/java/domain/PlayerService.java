@@ -12,13 +12,8 @@ public class PlayerService {
         this.playerDao = userDao;
     }
 
-    public boolean addPlayer(Player player) {
-        try {
-            playerDao.addPlayer(player);
-        } catch (Exception ex) {
-            return false;
-        }
-        return true;
+    public boolean addPlayer(Player player) throws SQLException {
+        return playerDao.addPlayer(player);
     }
 
     public void uppdatePlayerAmmount(Player player) {

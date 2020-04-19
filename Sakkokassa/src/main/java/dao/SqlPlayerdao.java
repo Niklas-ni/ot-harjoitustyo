@@ -24,13 +24,12 @@ public class SqlPlayerdao implements Playerdao {
     public boolean addPlayer(Player player) throws SQLException {
         try {
             Connection db = DriverManager.getConnection("jdbc:sqlite:teamPlayers.db");
-            PreparedStatement p = db.prepareStatement("INSERT INTO " + player.getPayBoxTable() + "(Name,ToPay) VALUES (?,?)");
+            PreparedStatement p = db.prepareStatement("INSERT INTO " + player.getPayBoxTable().getName() + "(Name,ToPay) VALUES (?,?)");
             p.setString(1, player.getname());
             p.setInt(2, player.getAmmount());
             p.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e);
-            System.out.println("Player exist");
+            System.out.println("here");
             return false;
         }
         return true;
@@ -40,15 +39,13 @@ public class SqlPlayerdao implements Playerdao {
     public ArrayList<Player> getAll(Player player) throws SQLException {
         try {
             Connection db = DriverManager.getConnection("jdbc:sqlite:teamPlayers.db");
-            PreparedStatement p = db.prepareStatement("SELECT Name,ToPay FROM " + player.getPayBoxTable());
+            PreparedStatement p = db.prepareStatement("SELECT Name,ToPay FROM " + player.getPayBoxTable().getName());
 
             ResultSet r = p.executeQuery();
             while (r.next()) {
                 String name = r.getString("Name");
                 int amount = r.getInt("ToPay");
-
                 teams.add(new Player(name, amount, player.getPayBoxTable()));
-
             }
         } catch (SQLException e) {
             System.out.println("No such List");
@@ -61,7 +58,7 @@ public class SqlPlayerdao implements Playerdao {
     public void uppdatePlayerAmmount(Player player) throws SQLException {
         try {
             Connection db = DriverManager.getConnection("jdbc:sqlite:teamPlayers.db");
-            PreparedStatement p = db.prepareStatement("UPDATE " + player.getPayBoxTable() + " SET ToPay = ToPay + " + player.getAmmount() + " WHERE " + player.getPayBoxTable() + ".Name=?");
+            PreparedStatement p = db.prepareStatement("UPDATE " + player.getPayBoxTable().getName() + " SET ToPay = ToPay + " + player.getAmmount() + " WHERE " + player.getPayBoxTable().getName() + ".Name=?");
             p.setString(1, player.getname());
             p.executeUpdate();
         } catch (SQLException e) {
@@ -71,5 +68,5 @@ public class SqlPlayerdao implements Playerdao {
         }
 
     }
-    
+
 }

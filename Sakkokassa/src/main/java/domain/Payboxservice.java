@@ -12,9 +12,6 @@ public class Payboxservice {
         this.userDao = userDao;
     }
 
-    
-
-
     public boolean login(String username) throws SQLException {
         PayBoxTable user = userDao.findByname(username);
         if (user == null) {
@@ -24,28 +21,20 @@ public class Payboxservice {
         return true;
     }
 
-   
     public PayBoxTable getLoggedUser() {
         return loggedIn;
     }
-
 
     public void logout() {
         loggedIn = null;
     }
 
-   
     public boolean createUser(String teamname, String password) throws SQLException {
         if (userDao.findByname(teamname) != null) {
             return false;
         }
         PayBoxTable user = new PayBoxTable(teamname, password);
-        try {
-            userDao.create(user);
-        } catch (Exception e) {
-            return false;
-        }
-
+        userDao.create(user);
         return true;
     }
 }

@@ -46,6 +46,7 @@
                 <configuration>
                     <excludes>
                         <exclude>kassaui/*</exclude>
+                        <exclude>main/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>

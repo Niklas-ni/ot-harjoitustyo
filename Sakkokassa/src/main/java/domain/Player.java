@@ -33,9 +33,5 @@ public class Player {
     public PayBoxTable getPayBoxTable() {
         return payBoxTable;
     }
-
-    public void setPayBoxTable(PayBoxTable payBoxTable) {
-        this.payBoxTable = payBoxTable;
-    }
-
+    
 }

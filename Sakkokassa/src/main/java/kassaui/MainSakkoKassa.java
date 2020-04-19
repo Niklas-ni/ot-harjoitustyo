@@ -38,11 +38,11 @@ public class MainSakkoKassa extends Application {
 
     @Override
     public void init() throws Exception {
-        
+
         SqlCashboxdao test = new SqlCashboxdao();
         Payboxservice test1 = new Payboxservice(test);
         this.payboxservice = test1;
-        
+
     }
 
     @Override
@@ -66,7 +66,7 @@ public class MainSakkoKassa extends Application {
                 if (payboxservice.login(usernameInput.getText())) {
                     loginMessage.setText("");
                     try {
-                        
+
                         SqlPlayerdao test = new SqlPlayerdao(User);
                         PlayerService testi = new PlayerService(test);
                     } catch (SQLException ex) {
@@ -215,7 +215,6 @@ public class MainSakkoKassa extends Application {
         primaryStage.show();
         primaryStage.setOnCloseRequest(e -> {
             System.out.println("closing");
-            
 
         });
     }
