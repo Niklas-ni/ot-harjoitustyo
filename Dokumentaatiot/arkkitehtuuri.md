@@ -25,7 +25,7 @@ Liittymässä on kolme eri näkymää
 
 SakkokassaLuokkakaavio
 
-![Luonnos](Kuvat/LuokkaKaavio.png)
+![Luonnos](Kuvat/SakkoKaavio.jpg)
 
 Meillä on käytössa ui osuus joka on vain käyttöliitymän näkymä.
 Domainissa voidaan käsitellä kassoja lisätä nimi ja vaihdella sakkoja.
