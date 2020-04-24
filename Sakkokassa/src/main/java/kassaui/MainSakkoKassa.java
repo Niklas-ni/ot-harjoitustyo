@@ -126,6 +126,8 @@ public class MainSakkoKassa extends Application {
             try {
                 if (payboxservice.createUser(username, Password)) {
                     userCreationMessage.setText("");
+                    newUsernameInput.setText("");
+                    newPasswordInput.setText("");
                     loginMessage.setText("new CashBox created");
                     loginMessage.setTextFill(Color.GREEN);
                     primaryStage.setScene(loginScene);
@@ -164,8 +166,8 @@ public class MainSakkoKassa extends Application {
         Label PasswordMessage = new Label();
         Password.setOnAction(e -> {
             if (PasswordInput.getText().equals(payboxservice.getLoggedUser().getPassword())) {
-
                 primaryStage.setScene(AdminScene);
+                PasswordInput.setText("Password");
             } else {
                 PasswordInput.setText("Wrong Password");
 
