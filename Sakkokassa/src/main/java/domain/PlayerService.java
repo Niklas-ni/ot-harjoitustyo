@@ -12,21 +12,35 @@ public class PlayerService {
         this.playerDao = userDao;
     }
 
-    public boolean addPlayer(Player player) throws SQLException {
-        return playerDao.addPlayer(player);
+    public boolean addPlayer(Player player, String payboxname) throws SQLException {
+         if (playerDao.addPlayer(player, payboxname)){
+             return true;
+         } else
+        playerDao.uppdatePlayerAmmount(player, payboxname);
+         return true; 
     }
 
-    public void uppdatePlayerAmmount(Player player) {
+    public void uppdatePlayerAmmount(Player player, String payboxname) {
         try {
-            playerDao.uppdatePlayerAmmount(player);
+            playerDao.uppdatePlayerAmmount(player, payboxname);
 
         } catch (SQLException e) {
             System.out.println(e);
         }
     }
 
-    ArrayList<Player> getAll(Player player) throws SQLException {
-        return playerDao.getAll(player);
+    public ArrayList<String> getAll(String payboxname) throws SQLException {
+        ArrayList<String> players = new ArrayList();
+        if (playerDao.getAll(payboxname).isEmpty()){
+            players.add("empty");
+            return players;
+        }
+        for (Player player : playerDao.getAll(payboxname)) {
+           String nameammount = player.getname() + " To Pay: " + player.getAmmount()+ " Euros";
+           players.add(nameammount);
+        
+        }
+        return players;
     }
 
 }

@@ -4,18 +4,17 @@ public class Player {
 
     private String name;
     private int ammount;
-    private PayBoxTable payBoxTable;
+    private String payBoxTablename;
 
-    public Player(String name, int ammount, PayBoxTable payBoxTable) {
+    public Player(String name, int ammount, String payBoxTablename) {
         this.name = name;
         this.ammount = ammount;
-        this.payBoxTable = payBoxTable;
+        this.payBoxTablename = payBoxTablename;
     }
 
-    public Player(String name, PayBoxTable payBoxTable) {
+    public Player(String name, int ammount) {
         this.name = name;
-        this.payBoxTable = payBoxTable;
-        this.ammount = 0;
+        this.ammount = ammount;
     }
 
     public String getname() {
@@ -30,8 +29,8 @@ public class Player {
         this.ammount = ammount;
     }
 
-    public PayBoxTable getPayBoxTable() {
-        return payBoxTable;
+    public String getPayBoxTablename() {
+        return payBoxTablename;
     }
     
 }

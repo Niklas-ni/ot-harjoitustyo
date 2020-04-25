@@ -74,35 +74,28 @@ public class SakkokassaPlayerTest {
     @Test
     public void createPlayer() throws SQLException {
         PayBoxTable test = new PayBoxTable(team1, password);
-        Player testPlayer = new Player(team1, 22, test);
+        Player testPlayer = new Player(team1, 22, team1);
     }
 
     @Test
     public void createPlayerWithoutAmmountMakesAmmount0() throws SQLException {
         PayBoxTable test = new PayBoxTable(team1, password);
-        Player testPlayer = new Player(team1, test);
+        Player testPlayer = new Player(team1, 0);
         assertEquals(0, testPlayer.getAmmount());
     }
 
     @Test
     public void setAmmountMakesPlayerNewAmmount() throws SQLException {
         PayBoxTable test = new PayBoxTable(team1, password);
-        Player testPlayer = new Player(team1, test);
+        Player testPlayer = new Player(team1,0);
         testPlayer.setAmmount(22);
         assertEquals(22, testPlayer.getAmmount());
     }
 
     @Test
-    public void playerGetPayboxtable() throws SQLException {
-        PayBoxTable test = new PayBoxTable(team1, password);
-        Player testPlayer = new Player(team1, test);
-        assertEquals(test, testPlayer.getPayBoxTable());
-    }
-
-    @Test
     public void playerGetName() throws SQLException {
         PayBoxTable test = new PayBoxTable(team1, password);
-        Player testPlayer = new Player(team1, test);
+        Player testPlayer = new Player(team1, 0);
         assertEquals(team1, testPlayer.getname());
     }
 
@@ -118,16 +111,16 @@ public class SakkokassaPlayerTest {
         SqlPlayerdao test = new SqlPlayerdao(team2);
         PlayerService test1 = new PlayerService(test);
         PayBoxTable testPayBox = new PayBoxTable(team2, password);
-        Player testPlayer = new Player("Niklas", 0, testPayBox);
-        assertEquals(true, test1.addPlayer(testPlayer));
+        Player testPlayer = new Player(team1, 0,team2);
+        assertEquals(true, test1.addPlayer(testPlayer, team2));
     }
     @Test
     public void playerTeamaddplayerdoubble() throws SQLException {
         SqlPlayerdao test = new SqlPlayerdao(team3);
         PlayerService test1 = new PlayerService(test);
         PayBoxTable testPayBox = new PayBoxTable(team3, password);
-        Player testPlayer = new Player("Niklas", 0, testPayBox);
-        test1.addPlayer(testPlayer);
-        assertEquals(false, test1.addPlayer(testPlayer));
+        Player testPlayer = new Player("Niklas", 0,team3);
+        test1.addPlayer(testPlayer, team3);
+        assertEquals(false, test1.addPlayer(testPlayer,team3));
     }
 }

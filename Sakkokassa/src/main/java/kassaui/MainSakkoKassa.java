@@ -3,15 +3,19 @@ package kassaui;
 import domain.Payboxservice;
 import dao.SqlCashboxdao;
 import dao.SqlPlayerdao;
+import domain.Player;
 import domain.PlayerService;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
@@ -31,8 +35,7 @@ public class MainSakkoKassa extends Application {
     private Scene newCashBoxScene;
     private Scene loginScene;
     private Scene AdminScene;
-    private String User;
-    private VBox players;
+    ListView<String> playersammounts = new ListView<>();
 
     private Label menuLabel = new Label();
 
@@ -45,8 +48,20 @@ public class MainSakkoKassa extends Application {
 
     }
 
+    public ObservableList<String> makeList(String name) throws SQLException {
+        ObservableList<String> items = FXCollections.observableArrayList();
+        for (String playersammounts : playerservice.getAll(name)) {
+            items.add(playersammounts);
+        }
+        return items;
+    }
+
+    public void emptylist() {
+
+    }
+
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws SQLException {
         VBox loginPane = new VBox(10);
         HBox inputPane = new HBox(10);
         loginPane.setPadding(new Insets(10));
@@ -59,7 +74,6 @@ public class MainSakkoKassa extends Application {
         Button loginButton = new Button("login");
         Button createButton = new Button("create new Team CashBox");
         loginButton.setOnAction(e -> {
-            User = usernameInput.getText();
             menuLabel.setText("Team: " + usernameInput.getText() + ":s CashBox Situation");
 
             try {
@@ -67,11 +81,13 @@ public class MainSakkoKassa extends Application {
                     loginMessage.setText("");
                     try {
 
-                        SqlPlayerdao test = new SqlPlayerdao(User);
+                        SqlPlayerdao test = new SqlPlayerdao(usernameInput.getText());
                         PlayerService testi = new PlayerService(test);
+                        this.playerservice = testi;
                     } catch (SQLException ex) {
                         Logger.getLogger(MainSakkoKassa.class.getName()).log(Level.SEVERE, null, ex);
                     }
+                    playersammounts.setItems(makeList(usernameInput.getText()));
                     primaryStage.setScene(paytableScene);
                     usernameInput.setText("");
                 } else {
@@ -142,11 +158,11 @@ public class MainSakkoKassa extends Application {
         });
 
         newUserPane.getChildren().addAll(userCreationMessage, newUsernamePane, newNamePane, createNewUserButton);
-
         newCashBoxScene = new Scene(newUserPane, 300, 250);
-        ScrollPane CashBoxScollbar = new ScrollPane();
-        BorderPane mainPane = new BorderPane(CashBoxScollbar);
-        paytableScene = new Scene(mainPane, 350, 450);
+
+        ScrollPane CashBoxpaytableScollbar = new ScrollPane();
+        BorderPane mainPanepaybox = new BorderPane(CashBoxpaytableScollbar);
+        paytableScene = new Scene(mainPanepaybox, 300, 550);
 
         HBox menuPane = new HBox(10);
         Region menuSpacer = new Region();
@@ -155,6 +171,7 @@ public class MainSakkoKassa extends Application {
         menuPane.getChildren().addAll(menuLabel, menuSpacer, logoutButton);
         logoutButton.setOnAction(e -> {
             primaryStage.setScene(loginScene);
+
         });
 
         HBox createForm = new HBox(10);
@@ -170,22 +187,15 @@ public class MainSakkoKassa extends Application {
                 PasswordInput.setText("Password");
             } else {
                 PasswordInput.setText("Wrong Password");
-
             }
-
         });
-
-        players = new VBox(10);
-        players.setMaxWidth(280);
-        players.setMinWidth(280);
-
-        CashBoxScollbar.setContent(players);
-        mainPane.setBottom(createForm);
-        mainPane.setTop(menuPane);
+        mainPanepaybox.setTop(playersammounts);
+        mainPanepaybox.setBottom(createForm);
+        mainPanepaybox.setCenter(menuPane);
 
         ScrollPane CashBoxAdminScollbar = new ScrollPane();
         BorderPane mainAdminPane = new BorderPane(CashBoxAdminScollbar);
-        AdminScene = new Scene(mainAdminPane, 300, 250);
+        AdminScene = new Scene(mainAdminPane, 300, 550);
 
         HBox menuAdminPane = new HBox(10);
         Region menuAdminSpacer = new Region();
@@ -194,21 +204,32 @@ public class MainSakkoKassa extends Application {
         menuAdminPane.getChildren().addAll(BackAdminButton);
         BackAdminButton.setOnAction(e -> {
             primaryStage.setScene(paytableScene);
+            try {
+                playersammounts.setItems(makeList(payboxservice.getLoggedUser().getName()));
+            } catch (SQLException ex) {
+                Logger.getLogger(MainSakkoKassa.class.getName()).log(Level.SEVERE, null, ex);
+            }
         });
 
         HBox createAdminForm = new HBox(10);
-        Button playerAmount = new Button("AddToPlayer");
+        Button playerAmount = new Button("Add");
         Region adminSpacer = new Region();
         HBox.setHgrow(adminSpacer, Priority.ALWAYS);
         TextField AdminPlayer = new TextField("Player");
         TextField AdminAmmount = new TextField("Amount");
-        createAdminForm.getChildren().addAll(AdminPlayer, AdminAmmount, adminSpacer, playerAmount);
-
-        players = new VBox(10);
-        players.setMaxWidth(280);
-        players.setMinWidth(280);
-
-        CashBoxAdminScollbar.setContent(players);
+        createAdminForm.getChildren().addAll(AdminPlayer, AdminAmmount, playerAmount);
+        playerAmount.setOnAction(e -> {
+            try {
+                playerservice.addPlayer(new Player(AdminPlayer.getText(), Integer.parseInt(AdminAmmount.getText())), payboxservice.getLoggedUser().getName());
+                AdminPlayer.setText("Player");
+                AdminAmmount.setText("Amount");
+                playersammounts.setItems(makeList(payboxservice.getLoggedUser().getName()));
+            } catch (SQLException ex) {
+                Logger.getLogger(MainSakkoKassa.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        );
+        mainAdminPane.setCenter(playersammounts);
         mainAdminPane.setBottom(createAdminForm);
         mainAdminPane.setTop(menuAdminPane);
 
@@ -223,7 +244,7 @@ public class MainSakkoKassa extends Application {
 
     ;
 
-    @Override
+        @Override
     public void stop() throws SQLException {
         // tee lopetustoimenpiteet täällä
         System.out.println("Good bye!");

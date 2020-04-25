@@ -3,11 +3,9 @@ package dao;
 import domain.Player;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 
 public class SqlPlayerdao implements Playerdao {
 
-    private ArrayList<Player> teams;
     private Connection connection;
 
     public SqlPlayerdao(String team) throws SQLException {
@@ -21,10 +19,10 @@ public class SqlPlayerdao implements Playerdao {
     }
 
     @Override
-    public boolean addPlayer(Player player) throws SQLException {
+    public boolean addPlayer(Player player, String payboxname) throws SQLException {
         try {
             Connection db = DriverManager.getConnection("jdbc:sqlite:teamPlayers.db");
-            PreparedStatement p = db.prepareStatement("INSERT INTO " + player.getPayBoxTable().getName() + "(Name,ToPay) VALUES (?,?)");
+            PreparedStatement p = db.prepareStatement("INSERT INTO " + payboxname + "(Name,ToPay ) VALUES (? ,?)");
             p.setString(1, player.getname());
             p.setInt(2, player.getAmmount());
             p.executeUpdate();
@@ -36,16 +34,17 @@ public class SqlPlayerdao implements Playerdao {
     }
 
     @Override
-    public ArrayList<Player> getAll(Player player) throws SQLException {
+    public ArrayList<Player> getAll(String teamTable) throws SQLException {
+        ArrayList<Player> teams = new ArrayList<>();
         try {
             Connection db = DriverManager.getConnection("jdbc:sqlite:teamPlayers.db");
-            PreparedStatement p = db.prepareStatement("SELECT Name,ToPay FROM " + player.getPayBoxTable().getName());
+            PreparedStatement p = db.prepareStatement("SELECT Name,ToPay FROM " + teamTable);
 
             ResultSet r = p.executeQuery();
             while (r.next()) {
                 String name = r.getString("Name");
                 int amount = r.getInt("ToPay");
-                teams.add(new Player(name, amount, player.getPayBoxTable()));
+                teams.add(new Player(name, amount));
             }
         } catch (SQLException e) {
             System.out.println("No such List");
@@ -55,10 +54,10 @@ public class SqlPlayerdao implements Playerdao {
     }
 
     @Override
-    public void uppdatePlayerAmmount(Player player) throws SQLException {
+    public void uppdatePlayerAmmount(Player player, String payboxname) throws SQLException {
         try {
             Connection db = DriverManager.getConnection("jdbc:sqlite:teamPlayers.db");
-            PreparedStatement p = db.prepareStatement("UPDATE " + player.getPayBoxTable().getName() + " SET ToPay = ToPay + " + player.getAmmount() + " WHERE " + player.getPayBoxTable().getName() + ".Name=?");
+            PreparedStatement p = db.prepareStatement("UPDATE " + payboxname + " SET ToPay = ToPay + " + player.getAmmount() + " WHERE " + payboxname + ".Name=?");
             p.setString(1, player.getname());
             p.executeUpdate();
         } catch (SQLException e) {
