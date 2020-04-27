@@ -10,10 +10,11 @@ Se on tehty helpottamaan kirjanpitoa. Tarkoitus on pystyä lisäämään joukkue
 * [Työaikakirjanpito](https://github.com/Niklas-ni/ot-harjoitustyo/blob/master/Dokumentaatiot/ty%C3%B6aikakirjanpito.md)
 * [Vaativuusmäärittely](https://github.com/Niklas-ni/ot-harjoitustyo/blob/master/Dokumentaatiot/M%C3%A4%C3%A4rittelydokumentti.md)
 * [Arkkitehtuuri](https://github.com/Niklas-ni/ot-harjoitustyo/blob/master/Dokumentaatiot/arkkitehtuuri.md)
+* [Käyttöohje](https://github.com/Niklas-ni/ot-harjoitustyo/blob/master/Dokumentaatiot/kayttoohje.md)
+## Releases
 
-## Viikko 5 Release
-
-* [Release](https://github.com/Niklas-ni/ot-harjoitustyo/releases/tag/v1.0)
+* [Release viikko 5](https://github.com/Niklas-ni/ot-harjoitustyo/releases/tag/v1.0)
+* [Release viikko 6](https://github.com/Niklas-ni/ot-harjoitustyo/releases/tag/V2.0)
 
 ## Testaus
 

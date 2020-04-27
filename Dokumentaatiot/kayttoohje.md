@@ -28,11 +28,11 @@ sakkoja on meneillä ja kenellä mitä sakkoja.
 
 ## Admin näkymä
 
-![Luonnos](Kuvat/adminpage.png)
+
 Admin näkymään pääset täyttämällä admin salasanan edellisen näkymän alakulmassa.
 Admin näkymässä voit sitte hallinoida pelaajia ja summia.
 tästä näkymästa pääset pois back napilla. 
-
+![Luonnos](Kuvat/adminpage.png)
 
 
 
