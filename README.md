@@ -34,7 +34,7 @@ Kattavuusraporttia voi tarkastella avaamalla selaimella tiedosto target/site/jac
 
 Suoritettavan jarin generointi Komento:
 
-mvn package:
+*mvn package*
 
 generoi hakemistoon target suoritettavan jar-tiedoston Sakkokassa-1.0-SNAPSHOT.jar
 
@@ -49,6 +49,6 @@ Mahdolliset virheilmoitukset selviävät avaamalla selaimella tiedosto target/si
 
 JavaDoc generoidaan komennolla
 
-mvn javadoc:javadoc:
+*mvn javadoc:javadoc*
 
 JavaDocia voi tarkastella avaamalla selaimella tiedosto target/site/apidocs/index.html

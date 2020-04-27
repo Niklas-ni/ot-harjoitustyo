@@ -32,5 +32,5 @@ public class Player {
     public String getPayBoxTablename() {
         return payBoxTablename;
     }
-    
+
 }

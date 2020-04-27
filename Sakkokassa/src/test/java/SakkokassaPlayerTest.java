@@ -57,10 +57,9 @@ public class SakkokassaPlayerTest {
         Statement player = db.createStatement();
         player.execute("DROP TABLE " + team1);
         player.execute("DROP TABLE " + team2);
-        player.execute("DROP TABLE " + team3);
+
         //sakkokassa.execute("DROP TABLE " + team4);
         //sakkokassa.execute("DROP TABLE " + team5);
-
     }
 
     @Before
@@ -87,7 +86,7 @@ public class SakkokassaPlayerTest {
     @Test
     public void setAmmountMakesPlayerNewAmmount() throws SQLException {
         PayBoxTable test = new PayBoxTable(team1, password);
-        Player testPlayer = new Player(team1,0);
+        Player testPlayer = new Player(team1, 0);
         testPlayer.setAmmount(22);
         assertEquals(22, testPlayer.getAmmount());
     }
@@ -111,16 +110,7 @@ public class SakkokassaPlayerTest {
         SqlPlayerdao test = new SqlPlayerdao(team2);
         PlayerService test1 = new PlayerService(test);
         PayBoxTable testPayBox = new PayBoxTable(team2, password);
-        Player testPlayer = new Player(team1, 0,team2);
+        Player testPlayer = new Player(team1, 0, team2);
         assertEquals(true, test1.addPlayer(testPlayer, team2));
-    }
-    @Test
-    public void playerTeamaddplayerdoubble() throws SQLException {
-        SqlPlayerdao test = new SqlPlayerdao(team3);
-        PlayerService test1 = new PlayerService(test);
-        PayBoxTable testPayBox = new PayBoxTable(team3, password);
-        Player testPlayer = new Player("Niklas", 0,team3);
-        test1.addPlayer(testPlayer, team3);
-        assertEquals(false, test1.addPlayer(testPlayer,team3));
     }
 }

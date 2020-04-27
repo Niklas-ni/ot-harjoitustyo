@@ -25,10 +25,6 @@ public class SakkokassaCashBoxTest {
     private String cashboxdaotable = "payboxtable";
     private String team1 = "TPS";
     private String team2 = "HIfk";
-    private String team3 = "IFK";
-    private String team4 = "HPK";
-    private String team5 = "FBC";
-    private String team6 = "TOR";
     private String password = "password";
 
     public static boolean tableExists(String nameOfTeam) throws SQLException {
@@ -69,19 +65,10 @@ public class SakkokassaCashBoxTest {
     public static void tearDownClass() throws SQLException {
         String cashboxDaotable = "payboxtable";
         String team1 = "TPS";
-        //String team2 = "HIfk";
-        //String team3 = "IFK";
-        //String team4 = "HPK";
-        //String team5 = "FBC";
-        //String team6 = "TOR";
+
         Connection db = DriverManager.getConnection("jdbc:sqlite:teams.db");
         Statement payboxtable = db.createStatement();
         payboxtable.execute("DROP TABLE " + cashboxDaotable);
-        //sakkokassa.execute("DROP TABLE " + team2);
-        //sakkokassa.execute("DROP TABLE " + team3);
-        //sakkokassa.execute("DROP TABLE " + team4);
-        //sakkokassa.execute("DROP TABLE " + team5);
-
     }
 
     @Before

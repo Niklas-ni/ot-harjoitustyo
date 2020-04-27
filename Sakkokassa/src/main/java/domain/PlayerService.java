@@ -13,11 +13,12 @@ public class PlayerService {
     }
 
     public boolean addPlayer(Player player, String payboxname) throws SQLException {
-         if (playerDao.addPlayer(player, payboxname)){
-             return true;
-         } else
-        playerDao.uppdatePlayerAmmount(player, payboxname);
-         return true; 
+        if (playerDao.addPlayer(player, payboxname)) {
+            return true;
+        } else {
+            playerDao.uppdatePlayerAmmount(player, payboxname);
+        }
+        return true;
     }
 
     public void uppdatePlayerAmmount(Player player, String payboxname) {
@@ -31,14 +32,14 @@ public class PlayerService {
 
     public ArrayList<String> getAll(String payboxname) throws SQLException {
         ArrayList<String> players = new ArrayList();
-        if (playerDao.getAll(payboxname).isEmpty()){
+        if (playerDao.getAll(payboxname).isEmpty()) {
             players.add("empty");
             return players;
         }
         for (Player player : playerDao.getAll(payboxname)) {
-           String nameammount = player.getname() + " To Pay: " + player.getAmmount()+ " Euros";
-           players.add(nameammount);
-        
+            String nameammount = player.getname() + " To Pay: " + player.getAmmount() + " Euros";
+            players.add(nameammount);
+
         }
         return players;
     }

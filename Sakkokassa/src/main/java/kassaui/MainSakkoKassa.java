@@ -35,7 +35,9 @@ public class MainSakkoKassa extends Application {
     private Scene newCashBoxScene;
     private Scene loginScene;
     private Scene AdminScene;
+
     ListView<String> playersammounts = new ListView<>();
+    ListView<String> playersammounts1 = new ListView<>();
 
     private Label menuLabel = new Label();
 
@@ -54,10 +56,6 @@ public class MainSakkoKassa extends Application {
             items.add(playersammounts);
         }
         return items;
-    }
-
-    public void emptylist() {
-
     }
 
     @Override
@@ -80,15 +78,16 @@ public class MainSakkoKassa extends Application {
                 if (payboxservice.login(usernameInput.getText())) {
                     loginMessage.setText("");
                     try {
-
                         SqlPlayerdao test = new SqlPlayerdao(usernameInput.getText());
                         PlayerService testi = new PlayerService(test);
                         this.playerservice = testi;
+                        playersammounts.setItems(makeList(usernameInput.getText()));
+                        playersammounts1.setItems(makeList(usernameInput.getText()));
+                        primaryStage.setScene(paytableScene);
                     } catch (SQLException ex) {
                         Logger.getLogger(MainSakkoKassa.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    playersammounts.setItems(makeList(usernameInput.getText()));
-                    primaryStage.setScene(paytableScene);
+
                     usernameInput.setText("");
                 } else {
                     loginMessage.setText("No Such Team");
@@ -189,9 +188,10 @@ public class MainSakkoKassa extends Application {
                 PasswordInput.setText("Wrong Password");
             }
         });
-        mainPanepaybox.setTop(playersammounts);
+
+        mainPanepaybox.setCenter(playersammounts1);
         mainPanepaybox.setBottom(createForm);
-        mainPanepaybox.setCenter(menuPane);
+        mainPanepaybox.setTop(menuPane);
 
         ScrollPane CashBoxAdminScollbar = new ScrollPane();
         BorderPane mainAdminPane = new BorderPane(CashBoxAdminScollbar);
@@ -206,6 +206,7 @@ public class MainSakkoKassa extends Application {
             primaryStage.setScene(paytableScene);
             try {
                 playersammounts.setItems(makeList(payboxservice.getLoggedUser().getName()));
+                playersammounts1.setItems(makeList(payboxservice.getLoggedUser().getName()));
             } catch (SQLException ex) {
                 Logger.getLogger(MainSakkoKassa.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -223,6 +224,7 @@ public class MainSakkoKassa extends Application {
                 playerservice.addPlayer(new Player(AdminPlayer.getText(), Integer.parseInt(AdminAmmount.getText())), payboxservice.getLoggedUser().getName());
                 AdminPlayer.setText("Player");
                 AdminAmmount.setText("Amount");
+                playersammounts1.setItems(makeList(payboxservice.getLoggedUser().getName()));
                 playersammounts.setItems(makeList(payboxservice.getLoggedUser().getName()));
             } catch (SQLException ex) {
                 Logger.getLogger(MainSakkoKassa.class.getName()).log(Level.SEVERE, null, ex);
