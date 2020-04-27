@@ -28,9 +28,4 @@ public class Player {
     public void setAmmount(int ammount) {
         this.ammount = ammount;
     }
-
-    public String getPayBoxTablename() {
-        return payBoxTablename;
-    }
-
 }

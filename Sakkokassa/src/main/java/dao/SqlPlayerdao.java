@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 public class SqlPlayerdao implements Playerdao {
 
-    private Connection connection;
-
     public SqlPlayerdao(String team) throws SQLException {
         try {
             Connection db = DriverManager.getConnection("jdbc:sqlite:teamPlayers.db");
@@ -27,7 +25,6 @@ public class SqlPlayerdao implements Playerdao {
             p.setInt(2, player.getAmmount());
             p.executeUpdate();
         } catch (SQLException e) {
-            System.out.println("here");
             return false;
         }
         return true;
@@ -47,8 +44,6 @@ public class SqlPlayerdao implements Playerdao {
                 teams.add(new Player(name, amount));
             }
         } catch (SQLException e) {
-            System.out.println("No such List");
-
         }
         return teams;
     }
@@ -61,11 +56,6 @@ public class SqlPlayerdao implements Playerdao {
             p.setString(1, player.getname());
             p.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e);
-            System.out.println("Does not exist!");
-
         }
-
     }
-
 }

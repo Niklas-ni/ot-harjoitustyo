@@ -15,11 +15,12 @@ sql luokasta voidaan sitten myös kysyä eri tietoja ja sen avulla pidetään ki
 
 ## Käyttöliittymä
 
-Liittymässä on kolme eri näkymää
+Liittymässä on neljä eri näkymää
 * Alku näkymä missä on login, create new 
 * Jos create new niin create new näkymä. Missä on nimi ja salasana palkit.
 * Jos tiedät kassan nimen niin voit loginin avulla. kirjautua sisään johon tulisi näkyviin pelaajat ja sakkojen koot.
-* Kassa näkymässä voi sitten täyttää password tiedon. jolloin näkymään tulee näkyviin add player ja add sakko. 
+* Kassa näkymässä voi sitten täyttää password tiedon. jolloin uuteen ikkunaan tulee näkyviin add player ja add sakko. 
+* "Admin" näkymässä voi sitten lisätä pelaajia ja muokata sakkoja.
 
 ## Käyttöliittymäluonnos
 
@@ -28,10 +29,12 @@ SakkokassaLuokkakaavio
 ![Luonnos](Kuvat/SakkoKaavio.jpg)
 
 Meillä on käytössa ui osuus joka on vain käyttöliitymän näkymä.
-Domainissa voidaan käsitellä kassoja lisätä nimi ja vaihdella sakkoja.
-kaikki työ on tarkoitus tehdä tässä osassa.
-Lopuksi meillä on DaoSQL osa johon sitten tallenetaan tietokantaan tieto joka
-pitää tallentaa. Joukkuekassoja jossa pelaajia ja sakkoja mitä itää maksaa.
+Domainissa on kaksi eri osaa Players ja Paytables
+jossa voidaan käsitellä molempien toiminnallisuuksia.
+molempien työ on tarkoitus tehdä tässä osassa.
+Lopuksi meillä on DaoSQL myös Players ja Paybox
+osa johon sitten tallenetaan tietokantaan tietoa pelaajista, summista ja eri kassoista mitä pitää tallentaa.
+
 
 
 SakkokassaLogin
@@ -51,20 +54,23 @@ Domain joka saa vastauksen true. tallentaa salasanan jonka sitten myöhemmin voi
 ja palauttaa true myös. 
 Tämän jälkeen ohjema alautuu loginScenen josta sitten voi jatkaa CashBoxScenen joka käytiin läpi.
 
-**uusien pelaajien lisäämistä ja sakkojen lisäämistä en ole vielä aloittanut**
-tarkoitus aloittaa ensi viikolla.
 
 ## Sovelluslogiikka
 
-En ole ihan vielä miettinyt valmiiksi miltä tulee näyttämään mutta idea on 
+Minulla on player ja PayboxService domain luokassa jossa playersService sisältää:
+* boolean addPlayer()
+jolla voi lisätä pelaajia.
+* void uppdateplayer() 
+jolla voi vaihtaa summaa pelaajalta.
+* ArrayList<String> getAll()
+joka palauttaa merkkijonona ("nimi" ja paljonko "maksaa" euroa)
+Payboxservice:
+* boolean Login()
+joka kirjaasisään tietyn käyttäjän jos on olemassa.
+boolean createUser()
+joka luo uuden käyttäjän jos ei ole aikaisemmin olemassa.
+näillä on tarkoitus hallinoida kassoja ja vaan näyttämään UI mitä se kysyy.
 
-* boolean newCashboxandpassword()
-* boolean isCashbox() 
-* boolean checkPassword()
-
-näillä pystyis sitten sovelluslogiikassa liikkumaan ikkunasta toiseen
-Miten teen listan josta näkyy kassan sisällön on vielä auki. 
-ja miten teen lisäämiset ja poistot tulee vielä.
 
 ## Tietojen Pysyväistalletus
 

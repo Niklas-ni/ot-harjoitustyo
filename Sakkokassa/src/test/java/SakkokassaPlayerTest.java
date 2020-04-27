@@ -15,6 +15,7 @@ import domain.Player;
 import domain.PlayerService;
 import java.sql.DatabaseMetaData;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class SakkokassaPlayerTest {
 
@@ -36,9 +37,7 @@ public class SakkokassaPlayerTest {
     private String team1 = "TPS";
     private String team2 = "HIfk";
     private String team3 = "IFK";
-    private String team4 = "HPK";
-    private String team5 = "FBC";
-    private String team6 = "TOR";
+    private String team4 = "FBC";
     private String password = "password";
 
     @BeforeClass
@@ -50,16 +49,14 @@ public class SakkokassaPlayerTest {
         String team1 = "TPS";
         String team2 = "HIfk";
         String team3 = "IFK";
-        //String team4 = "HPK";
-        //String team5 = "FBC";
-        //String team6 = "TOR";
+        String team4 = "FBC";
+
         Connection db = DriverManager.getConnection("jdbc:sqlite:teamPlayers.db");
         Statement player = db.createStatement();
         player.execute("DROP TABLE " + team1);
         player.execute("DROP TABLE " + team2);
+        player.execute("DROP TABLE " + team3);
 
-        //sakkokassa.execute("DROP TABLE " + team4);
-        //sakkokassa.execute("DROP TABLE " + team5);
     }
 
     @Before
@@ -112,5 +109,52 @@ public class SakkokassaPlayerTest {
         PayBoxTable testPayBox = new PayBoxTable(team2, password);
         Player testPlayer = new Player(team1, 0, team2);
         assertEquals(true, test1.addPlayer(testPlayer, team2));
+    }
+
+    @Test
+    public void ifPlayerExistAmmountUppdates() throws SQLException {
+        SqlPlayerdao test = new SqlPlayerdao(team2);
+        PlayerService test1 = new PlayerService(test);
+        PayBoxTable testPayBox = new PayBoxTable(team2, password);
+        Player testPlayer = new Player(team1, 22, team2);
+        Player testPlayer1 = new Player(team1, 28, team2);
+        test1.addPlayer(testPlayer1, team2);
+        assertEquals(true, test1.addPlayer(testPlayer, team2));
+    }
+
+    @Test
+    public void playersGetAll() throws SQLException {
+        SqlPlayerdao test = new SqlPlayerdao(team1);
+        PlayerService test1 = new PlayerService(test);
+        PayBoxTable testPayBox = new PayBoxTable(team1, password);
+        Player test4 = new Player(team1, 33, team1);
+        test1.addPlayer(test4, team1);
+        ArrayList<String> testprint = new ArrayList<>();
+        testprint.add("TPS To Pay: 33 Euros");
+        assertEquals(testprint, test1.getAll(team1));
+    }
+
+    @Test
+    public void playersGetAllIsEmpty() throws SQLException {
+        SqlPlayerdao test = new SqlPlayerdao(team1);
+        PlayerService test1 = new PlayerService(test);
+        PayBoxTable testPayBox = new PayBoxTable(team1, password);
+        ArrayList<String> testprint = new ArrayList<>();
+        testprint.add("empty");
+        assertEquals(testprint, test1.getAll(team4));
+    }
+
+    @Test
+    public void PlayersUppdate() throws SQLException {
+        SqlPlayerdao test = new SqlPlayerdao(team3);
+        PlayerService test1 = new PlayerService(test);
+        PayBoxTable testPayBox = new PayBoxTable(team3, password);
+        Player test4 = new Player(team3, 33, team3);
+        test1.addPlayer(test4, team3);
+        test4.setAmmount(55);
+        test1.uppdatePlayerAmmount(test4, team3);
+        ArrayList<String> testprint = new ArrayList<>();
+        testprint.add("IFK To Pay: 88 Euros");
+        assertEquals(testprint, test1.getAll(team3));
     }
 }
