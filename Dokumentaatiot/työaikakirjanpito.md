@@ -14,5 +14,7 @@ Pvm  |  Aika(h)  | Työ
 17.04 | 5  | Dao opettelua
 18.04 | 8  | Dao rajapinnan parantelua. kokeilua chubblilla. toimii macilla.
 19.04 | 3  | Testien tekoa
+23.04 | 4  | Ui pelaajan lisäys
+27.04 | 6  | Testien tekoa checkstyle javadoc ja kayttoohje
 ------|----|------------
-00.00 | 58 | AikaYhteensä
+00.00 | 68 | AikaYhteensä
