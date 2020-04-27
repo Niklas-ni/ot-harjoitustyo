@@ -10,6 +10,7 @@ tai netbeansin kautta.
 Sovellus käynnistyy ensimmäiseen näkymään missä on joko login tai create new paytable
 jos tiedät jonkun login voit suoraan siirtyä eteenpäin täyttämällä login.
 Jos olet uusi käyttäjä joudut tekemään uuden create paytable napilla.
+
 ![Luonnos](Kuvat/firstpage.png)
 
 
@@ -17,6 +18,7 @@ Jos olet uusi käyttäjä joudut tekemään uuden create paytable napilla.
 
 create näkymässä voi lisätä uuden joukkueen ja sille salasanan täyttämällä 
 name ja password.
+
 ![Luonnos](Kuvat/createpage.png)
 
 
@@ -24,6 +26,7 @@ name ja password.
 
 jos vain tietää joukkueen nimen eikä salasanaa voi tästä näkymästä katso mitä 
 sakkoja on meneillä ja kenellä mitä sakkoja.
+
 ![Luonnos](Kuvat/notadminpage.png)
 
 ## Admin näkymä
@@ -32,6 +35,7 @@ sakkoja on meneillä ja kenellä mitä sakkoja.
 Admin näkymään pääset täyttämällä admin salasanan edellisen näkymän alakulmassa.
 Admin näkymässä voit sitte hallinoida pelaajia ja summia.
 tästä näkymästa pääset pois back napilla. 
+
 ![Luonnos](Kuvat/adminpage.png)
 
 
