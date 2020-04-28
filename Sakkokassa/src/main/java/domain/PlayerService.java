@@ -25,20 +25,14 @@ public class PlayerService {
      * @param payboxname users logged in table where player will be added
      *
      * @return true
-     * @throws java.sql.SQLException
      */
     public boolean addPlayer(Player player, String payboxname) throws SQLException {
         if (playerDao.addPlayer(player, payboxname)) {
             return true;
         } else {
-            if (player.getAmmount() < 0) {
-                playerDao.uppdatePlayerAmmount(player, payboxname);
-            } else {
-                playerDao.uppdatePlayerAlltime(player, payboxname);
-                playerDao.uppdatePlayerAmmount(player, payboxname);
-            }
-            return true;
+            playerDao.uppdatePlayerAmmount(player, payboxname);
         }
+        return true;
     }
 
     /**
@@ -53,12 +47,7 @@ public class PlayerService {
      */
     public void uppdatePlayerAmmount(Player player, String payboxname) {
         try {
-            if (player.getAmmount() < 0) {
-                playerDao.uppdatePlayerAmmount(player, payboxname);
-            } else {
-                playerDao.uppdatePlayerAmmount(player, payboxname);
-                playerDao.uppdatePlayerAlltime(player, payboxname);
-            }
+            playerDao.uppdatePlayerAmmount(player, payboxname);
         } catch (SQLException e) {
         }
     }
@@ -71,28 +60,22 @@ public class PlayerService {
      *
      * @param payboxname user chosen table from where to get all players and
      * amounts
-     * @return return a List with players and what to pay
-     * @throws java.sql.SQLException
      *
      *
      */
+
     public ArrayList<String> getAll(String payboxname) throws SQLException {
-        ArrayList players = new ArrayList<>();
+        ArrayList<String> players = new ArrayList();
         if (playerDao.getAll(payboxname).isEmpty()) {
             players.add("empty");
             return players;
         }
+        for (Player player : playerDao.getAll(payboxname)) {
+            String nameammount = player.getname() + " To Pay: " + player.getAmmount() + " Euros";
+            players.add(nameammount);
 
-        return playerDao.getAll(payboxname);
-    }
-
-    public int getSumfromTable(String payboxname) throws SQLException {
-        return playerDao.getSumfromTable(payboxname);
-
-    }
-
-    public int getSumfromAlLTimeTable(String payboxname) throws SQLException {
-        return playerDao.getSumAlltimeTable(payboxname);
+        }
+        return players;
     }
 
 }

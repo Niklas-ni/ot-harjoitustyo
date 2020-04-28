@@ -40,7 +40,6 @@ public class MainSakkoKassa extends Application {
     ListView<String> playersammounts1 = new ListView<>();
 
     private Label menuLabel = new Label();
-    private Label menuLabel2 = new Label();
 
     @Override
     public void init() throws Exception {
@@ -73,43 +72,51 @@ public class MainSakkoKassa extends Application {
         Button loginButton = new Button("login");
         Button createButton = new Button("create new Team CashBox");
         loginButton.setOnAction(e -> {
+            menuLabel.setText("Team: " + usernameInput.getText() + ":s CashBox Situation");
+
             try {
                 if (payboxservice.login(usernameInput.getText())) {
                     loginMessage.setText("");
-
-                    SqlPlayerdao test = new SqlPlayerdao(usernameInput.getText());
-                    PlayerService testi = new PlayerService(test);
-                    this.playerservice = testi;
-                    playersammounts.setItems(makeList(usernameInput.getText()));
-                    playersammounts1.setItems(makeList(usernameInput.getText()));
-                    menuLabel2.setText("Team: " + payboxservice.getLoggedUser().getName() + ":s CashBox Missing: " + playerservice.getSumfromTable(payboxservice.getLoggedUser().getName()) + " Money in Bank: " + playerservice.getSumfromAlLTimeTable(payboxservice.getLoggedUser().getName()));
-                    menuLabel.setText("Team: " + payboxservice.getLoggedUser().getName() + ":s CashBox Missing: " + playerservice.getSumfromTable(payboxservice.getLoggedUser().getName()) + " Money in Bank: " + playerservice.getSumfromAlLTimeTable(payboxservice.getLoggedUser().getName()));
-                    primaryStage.setScene(paytableScene);
+                    try {
+                        SqlPlayerdao test = new SqlPlayerdao(usernameInput.getText());
+                        PlayerService testi = new PlayerService(test);
+                        this.playerservice = testi;
+                        playersammounts.setItems(makeList(usernameInput.getText()));
+                        playersammounts1.setItems(makeList(usernameInput.getText()));
+                        primaryStage.setScene(paytableScene);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(MainSakkoKassa.class.getName()).log(Level.SEVERE, null, ex);
+                    }
 
                     usernameInput.setText("");
                 } else {
                     loginMessage.setText("No Such Team");
                     loginMessage.setTextFill(Color.RED);
                 }
-
             } catch (SQLException ex) {
+                System.out.println(ex);
                 Logger.getLogger(MainSakkoKassa.class.getName()).log(Level.SEVERE, null, ex);
             }
+
         });
 
         createButton.setOnAction(e -> {
             usernameInput.setText("");
             primaryStage.setScene(newCashBoxScene);
         });
+
         loginPane.getChildren().addAll(loginMessage, inputPane, loginButton, createButton);
+
         loginScene = new Scene(loginPane, 300, 250);
         VBox newUserPane = new VBox(10);
+
         HBox newUsernamePane = new HBox(10);
         newUsernamePane.setPadding(new Insets(10));
         TextField newUsernameInput = new TextField();
         Label newUsernameLabel = new Label("Team Name");
         newUsernameLabel.setPrefWidth(100);
         newUsernamePane.getChildren().addAll(newUsernameLabel, newUsernameInput);
+
         HBox newNamePane = new HBox(10);
         newNamePane.setPadding(new Insets(10));
         PasswordField newPasswordInput = new PasswordField();
@@ -117,16 +124,18 @@ public class MainSakkoKassa extends Application {
         Label newNameLabel = new Label("Password");
         newNameLabel.setPrefWidth(100);
         newNamePane.getChildren().addAll(newNameLabel, newPasswordInput);
+
         Label userCreationMessage = new Label();
+
         Button createNewUserButton = new Button("create");
         createNewUserButton.setPadding(new Insets(10));
-        createNewUserButton.setOnAction(e
-                -> {
-            String username = newUsernameInput.getText();
 
+        createNewUserButton.setOnAction(e -> {
+            String username = newUsernameInput.getText();
             String Password = newPasswordInput.getText();
-            if (username.length() <= 2 || Password.length() < 4) {
-                userCreationMessage.setText("TeamName or Password too short. Or TeamName starts with number");
+
+            if (username.length() == 2 || Password.length() < 4) {
+                userCreationMessage.setText("TeamName or Password too short. Team name > 2, password > 4");
                 userCreationMessage.setTextFill(Color.RED);
             }
             try {
@@ -138,129 +147,101 @@ public class MainSakkoKassa extends Application {
                     loginMessage.setTextFill(Color.GREEN);
                     primaryStage.setScene(loginScene);
                 } else {
-                    userCreationMessage.setText("Team Already Made Or starts with number");
+                    userCreationMessage.setText("Team Already Made");
                     userCreationMessage.setTextFill(Color.RED);
-
                 }
             } catch (SQLException ex) {
-                Logger.getLogger(MainSakkoKassa.class
-                        .getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MainSakkoKassa.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        }
-        );
+        });
 
         newUserPane.getChildren().addAll(userCreationMessage, newUsernamePane, newNamePane, createNewUserButton);
         newCashBoxScene = new Scene(newUserPane, 300, 250);
+
         ScrollPane CashBoxpaytableScollbar = new ScrollPane();
         BorderPane mainPanepaybox = new BorderPane(CashBoxpaytableScollbar);
-        paytableScene = new Scene(mainPanepaybox, 400, 550);
+        paytableScene = new Scene(mainPanepaybox, 300, 550);
+
         HBox menuPane = new HBox(10);
         Region menuSpacer = new Region();
         HBox.setHgrow(menuSpacer, Priority.ALWAYS);
         Button logoutButton = new Button("Logout");
-        menuPane.getChildren()
-                .addAll(menuLabel, menuSpacer, logoutButton);
+        menuPane.getChildren().addAll(menuLabel, menuSpacer, logoutButton);
         logoutButton.setOnAction(e -> {
             primaryStage.setScene(loginScene);
-        }
-        );
+
+        });
+
         HBox createForm = new HBox(10);
         Button Password = new Button("Admin");
-        PasswordField PasswordInput = new PasswordField();
-        PasswordInput.setPromptText("Password");
-        createForm.getChildren().addAll(PasswordInput, Password);
+        Region spacer = new Region();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+        TextField PasswordInput = new TextField("Password");
+        createForm.getChildren().addAll(PasswordInput, spacer, Password);
         Label PasswordMessage = new Label();
         Password.setOnAction(e -> {
             if (PasswordInput.getText().equals(payboxservice.getLoggedUser().getPassword())) {
-                try {
-                    menuLabel2.setText("Team: " + payboxservice.getLoggedUser().getName() + ":s CashBox Missing: " + playerservice.getSumfromTable(payboxservice.getLoggedUser().getName()) + " Money in Bank: " + playerservice.getSumfromAlLTimeTable(payboxservice.getLoggedUser().getName()));
-                    menuLabel.setText("Team: " + payboxservice.getLoggedUser().getName() + ":s CashBox Missing: " + playerservice.getSumfromTable(payboxservice.getLoggedUser().getName()) + " Money in Bank: " + playerservice.getSumfromAlLTimeTable(payboxservice.getLoggedUser().getName()));
-                    primaryStage.setScene(AdminScene);
-                     PasswordInput.setText("");
-                    PasswordInput.setPromptText("Password");
-                } catch (SQLException ex) {
-                    Logger.getLogger(MainSakkoKassa.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                primaryStage.setScene(AdminScene);
+                PasswordInput.setText("Password");
             } else {
-                PasswordInput.setText("");
-                PasswordInput.setPromptText("Wrong Password");
+                PasswordInput.setText("Wrong Password");
             }
-        }
-        );
+        });
+
         mainPanepaybox.setCenter(playersammounts1);
         mainPanepaybox.setBottom(createForm);
         mainPanepaybox.setTop(menuPane);
 
         ScrollPane CashBoxAdminScollbar = new ScrollPane();
         BorderPane mainAdminPane = new BorderPane(CashBoxAdminScollbar);
-        AdminScene = new Scene(mainAdminPane, 400, 550);
+        AdminScene = new Scene(mainAdminPane, 300, 550);
 
         HBox menuAdminPane = new HBox(10);
         Region menuAdminSpacer = new Region();
-
         HBox.setHgrow(menuAdminSpacer, Priority.ALWAYS);
         Button BackAdminButton = new Button("Back");
-
-        menuAdminPane.getChildren().addAll(menuLabel2, menuAdminSpacer, BackAdminButton);
+        menuAdminPane.getChildren().addAll(BackAdminButton);
         BackAdminButton.setOnAction(e -> {
             primaryStage.setScene(paytableScene);
             try {
-                menuLabel.setText("Team: " + payboxservice.getLoggedUser().getName() + ":s CashBox Missing: " + playerservice.getSumfromTable(payboxservice.getLoggedUser().getName()) + " Money in Bank: " + playerservice.getSumfromAlLTimeTable(payboxservice.getLoggedUser().getName()));
-                menuLabel2.setText("Team: " + payboxservice.getLoggedUser().getName() + ":s CashBox Missing: " + playerservice.getSumfromTable(payboxservice.getLoggedUser().getName()) + " Money in Bank: " + playerservice.getSumfromAlLTimeTable(payboxservice.getLoggedUser().getName()));
                 playersammounts.setItems(makeList(payboxservice.getLoggedUser().getName()));
                 playersammounts1.setItems(makeList(payboxservice.getLoggedUser().getName()));
-
             } catch (SQLException ex) {
-                Logger.getLogger(MainSakkoKassa.class
-                        .getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MainSakkoKassa.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }
-        );
+        });
 
-        HBox createAdminForm = new HBox(2);
+        HBox createAdminForm = new HBox(10);
         Button playerAmount = new Button("Add");
-        TextField AdminPlayer = new TextField();
-        TextField AdminAmmount = new TextField();
-        AdminPlayer.setMaxWidth(100);
-        AdminAmmount.setMaxWidth(100);
-        AdminPlayer.setPromptText("Player name");
-        AdminAmmount.setPromptText("Player amount");
+        Region adminSpacer = new Region();
+        HBox.setHgrow(adminSpacer, Priority.ALWAYS);
+        TextField AdminPlayer = new TextField("Player");
+        TextField AdminAmmount = new TextField("Amount");
         createAdminForm.getChildren().addAll(AdminPlayer, AdminAmmount, playerAmount);
         playerAmount.setOnAction(e -> {
             try {
-                if (AdminAmmount.getText().isBlank() || AdminAmmount.getText().substring(0, 1).matches("[a-zA-Z]")) {
-                    AdminAmmount.setText("");
-                    AdminAmmount.setPromptText("Need a Number");
-                } else {
-                    playerservice.addPlayer(new Player(AdminPlayer.getText().toUpperCase().strip(), Integer.parseInt(AdminAmmount.getText())), payboxservice.getLoggedUser().getName());
-                    AdminPlayer.setPromptText("Player name");
-                    AdminAmmount.setPromptText("Player amount");
-                    playersammounts1.setItems(makeList(payboxservice.getLoggedUser().getName()));
-                    playersammounts.setItems(makeList(payboxservice.getLoggedUser().getName()));
-                    menuLabel2.setText("Team: " + payboxservice.getLoggedUser().getName() + ":s CashBox Missing: " + playerservice.getSumfromTable(payboxservice.getLoggedUser().getName()) + " Money in Bank: " + playerservice.getSumfromAlLTimeTable(payboxservice.getLoggedUser().getName()));
-                    menuLabel.setText("Team: " + payboxservice.getLoggedUser().getName() + ":s CashBox Missing: " + playerservice.getSumfromTable(payboxservice.getLoggedUser().getName()) + " Money in Bank: " + playerservice.getSumfromAlLTimeTable(payboxservice.getLoggedUser().getName()));
-                }
-
+                playerservice.addPlayer(new Player(AdminPlayer.getText(), Integer.parseInt(AdminAmmount.getText())), payboxservice.getLoggedUser().getName());
+                AdminPlayer.setText("Player");
+                AdminAmmount.setText("Amount");
+                playersammounts1.setItems(makeList(payboxservice.getLoggedUser().getName()));
+                playersammounts.setItems(makeList(payboxservice.getLoggedUser().getName()));
             } catch (SQLException ex) {
-                Logger.getLogger(MainSakkoKassa.class
-                        .getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(MainSakkoKassa.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         );
         mainAdminPane.setCenter(playersammounts);
         mainAdminPane.setBottom(createAdminForm);
         mainAdminPane.setTop(menuAdminPane);
+
         primaryStage.setTitle("PayTables");
         primaryStage.setScene(loginScene);
         primaryStage.show();
-
-        primaryStage.setOnCloseRequest(e
-                -> {
+        primaryStage.setOnCloseRequest(e -> {
             System.out.println("closing");
 
-        }
-        );
+        });
     }
 
     ;

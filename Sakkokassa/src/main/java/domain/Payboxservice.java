@@ -23,7 +23,6 @@ public class Payboxservice {
      * @param username
      *
      * @return true
-     * @throws java.sql.SQLException
      */
     public boolean login(String username) throws SQLException {
         PayBoxTable user = userDao.findByname(username);
@@ -52,20 +51,16 @@ public class Payboxservice {
     /**
      * method creates a user with password if it do not exist
      *
-     * @param teamname user given team
-     * @param password user given password to team
+     * @param teamname user given team  
+     *@param password user given password to team
      * @return loggedUser
-     * @throws java.sql.SQLException
      */
     public boolean createUser(String teamname, String password) throws SQLException {
-        if (teamname.substring(0, 1).matches("[0-9]")) {
+        if (userDao.findByname(teamname) != null) {
             return false;
-        } else if (userDao.findByname(teamname) != null) {
-            return false;
-        } else {
-            PayBoxTable user = new PayBoxTable(teamname, password);
-            userDao.create(user);
-            return true;
         }
+        PayBoxTable user = new PayBoxTable(teamname, password);
+        userDao.create(user);
+        return true;
     }
 }

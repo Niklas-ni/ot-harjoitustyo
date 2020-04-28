@@ -9,14 +9,8 @@ public interface Playerdao {
 
     boolean addPlayer(Player player, String payboxname) throws SQLException;
 
-    ArrayList<String> getAll(String teamTable) throws SQLException;
+    ArrayList<Player> getAll(String teamTable) throws SQLException;
 
     void uppdatePlayerAmmount(Player player, String payboxname) throws SQLException;
-
-    int getSumfromTable(String payboxname) throws SQLException;
-    
-    int getSumAlltimeTable(String teamTable) throws SQLException;
-    
-    void uppdatePlayerAlltime(Player player, String payboxname) throws SQLException;
 
 }
