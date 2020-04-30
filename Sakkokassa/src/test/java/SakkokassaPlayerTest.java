@@ -130,7 +130,7 @@ public class SakkokassaPlayerTest {
         Player test4 = new Player(team1, 33, team1);
         test1.addPlayer(test4, team1);
         ArrayList<String> testprint = new ArrayList<>();
-        testprint.add("TPS To Pay: 33 Euros");
+        testprint.add("TPS ToPay: 33 AllTime: 33 Euros");
         assertEquals(testprint, test1.getAll(team1));
     }
 
@@ -154,7 +154,7 @@ public class SakkokassaPlayerTest {
         test4.setAmmount(55);
         test1.uppdatePlayerAmmount(test4, team3);
         ArrayList<String> testprint = new ArrayList<>();
-        testprint.add("IFK To Pay: 88 Euros");
+        testprint.add("IFK ToPay: 88 AllTime: 88 Euros");
         assertEquals(testprint, test1.getAll(team3));
     }
 }

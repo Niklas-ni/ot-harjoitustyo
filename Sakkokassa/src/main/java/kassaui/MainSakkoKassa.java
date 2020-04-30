@@ -229,7 +229,7 @@ public class MainSakkoKassa extends Application {
         createAdminForm.getChildren().addAll(AdminPlayer, AdminAmmount, playerAmount);
         playerAmount.setOnAction(e -> {
             try {
-                if (AdminAmmount.getText().isBlank() || AdminAmmount.getText().substring(0, 1).matches("[a-zA-Z]")) {
+                if (AdminAmmount.getText().isEmpty() || AdminAmmount.getText().substring(0, 1).matches("[a-zA-Z]")) {
                     AdminAmmount.setText("");
                     AdminAmmount.setPromptText("Need a Number");
                 } else {
@@ -248,9 +248,11 @@ public class MainSakkoKassa extends Application {
             }
         }
         );
+       
         mainAdminPane.setCenter(playersammounts);
         mainAdminPane.setBottom(createAdminForm);
         mainAdminPane.setTop(menuAdminPane);
+        
         primaryStage.setTitle("PayTables");
         primaryStage.setScene(loginScene);
         primaryStage.show();
