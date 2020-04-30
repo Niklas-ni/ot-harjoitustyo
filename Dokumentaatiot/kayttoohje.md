@@ -1,5 +1,9 @@
 # käyttöohje
 
+## Ohjelma vaatii:
+* Käyttäjällä on asennettuna Java 11 tai uudempi malli.
+
+
 ## Ohjelman käynnistäminen
 ohjelma voidaan käynnistää komennolla 
 *mvn compile exec:java -Dexec.mainClass=main.Main*
@@ -17,7 +21,9 @@ Jos olet uusi käyttäjä joudut tekemään uuden create paytable napilla.
 ## Create näkymä
 
 create näkymässä voi lisätä uuden joukkueen ja sille salasanan täyttämällä 
-name ja password.
+name ja password. 
+* name pitää alkaa kirjaimella ja olla yli 2 merkkiä pitkä.
+* salasana voi olla mitä vaan.
 
 ![Luonnos](Kuvat/createpage.png)
 
@@ -26,6 +32,7 @@ name ja password.
 
 jos vain tietää joukkueen nimen eikä salasanaa voi tästä näkymästä katso mitä 
 sakkoja on meneillä ja kenellä mitä sakkoja.
+Myös kassan rahamäärän ja maksamattomien sakkojen määrä näkyy.
 
 ![Luonnos](Kuvat/notadminpage.png)
 
@@ -34,6 +41,13 @@ sakkoja on meneillä ja kenellä mitä sakkoja.
 
 Admin näkymään pääset täyttämällä admin salasanan edellisen näkymän alakulmassa.
 Admin näkymässä voit sitte hallinoida pelaajia ja summia.
+Jos pelaaja on maksanut sakon tai osan sakosta sen voi poistaa merkitsemällä ( - ) miinus ennen määrää.
+Esim. PELAAJA: ToPay 10 Alltime 10 Euroa.
+
+täyttämällä  (Pelaaja , -10 )
+
+saadaan PELAAJA ToPay 0 Alltime 10 Euroa
+
 tästä näkymästa pääset pois back napilla. 
 
 ![Luonnos](Kuvat/adminpage.png)

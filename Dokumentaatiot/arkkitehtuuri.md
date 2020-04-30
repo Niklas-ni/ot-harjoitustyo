@@ -63,7 +63,7 @@ jolla voi lisätä pelaajia.
 * void uppdateplayer() 
 jolla voi vaihtaa summaa pelaajalta.
 * ArrayList<String> getAll()
-joka palauttaa merkkijonona ("nimi" ja paljonko "maksaa" euroa)
+joka palauttaa merkkijonona ("nimi" ja paljonko "velkaa" ja paljonko maksettu yhteensä.)
 Payboxservice:
 * boolean Login()
 joka kirjaasisään tietyn käyttäjän jos on olemassa.
@@ -74,6 +74,15 @@ näillä on tarkoitus hallinoida kassoja ja vaan näyttämään UI mitä se kysy
 
 ## Tietojen Pysyväistalletus
 
-Siinä käytän sql Tietokantaa ja tallenan siihen tietoa eri taulukoista ja sakkojen suuruuksista.
+Siinä käytän kahta eri sql Tietokantaa 
+*Teams
+Jossa payboxes tietokanta joka tallentaa (nimi,salasana) taulukkoon.
+tästä voi tehdä kyselyjä josta saa tiedot.
+
+* teamPlayers
+tässä jokainen joukkue luo oman taulukon jossa on pelaajille
+(nimi,velkaa,summa) tästä sitten pystyy eri kyselyjen kanssa saamaan tietoja eri pelaajista.
+
+
 
   

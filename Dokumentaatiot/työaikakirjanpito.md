@@ -16,5 +16,6 @@ Pvm  |  Aika(h)  | Työ
 19.04 | 3  | Testien tekoa
 23.04 | 4  | Ui pelaajan lisäys
 27.04 | 6  | Testien tekoa checkstyle javadoc ja kayttoohje
+30.04 | 2  | Dokumentaation parannusta
 ------|----|------------
-00.00 | 68 | AikaYhteensä
+00.00 | 70 | AikaYhteensä
