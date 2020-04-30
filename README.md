@@ -18,7 +18,7 @@ Se on tehty helpottamaan kirjanpitoa. Tarkoitus on pystyä lisäämään joukkue
 
 ### Ennen käyttöä
 Jotta ohjelma toimii oikein käyttäjä tarvitsee java 11 tai uudemman version.
-Muuten käyttäjä voi ladata releasen ja käyttää ohjelmaa.
+
 
 ### Viikko Releases
 
