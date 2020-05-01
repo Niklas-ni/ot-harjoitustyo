@@ -45,9 +45,9 @@ public class MainSakkoKassa extends Application {
     @Override
     public void init() throws Exception {
 
-        SqlCashboxdao test = new SqlCashboxdao();
-        Payboxservice test1 = new Payboxservice(test);
-        this.payboxservice = test1;
+        SqlCashboxdao Start = new SqlCashboxdao();
+        Payboxservice payBoxStart = new Payboxservice(Start);
+        this.payboxservice = payBoxStart;
 
     }
 
@@ -77,9 +77,9 @@ public class MainSakkoKassa extends Application {
                 if (payboxservice.login(usernameInput.getText())) {
                     loginMessage.setText("");
 
-                    SqlPlayerdao test = new SqlPlayerdao(usernameInput.getText());
-                    PlayerService testi = new PlayerService(test);
-                    this.playerservice = testi;
+                    SqlPlayerdao loggedinUser = new SqlPlayerdao(usernameInput.getText());
+                    PlayerService loggedIn = new PlayerService(loggedinUser);
+                    this.playerservice = loggedIn;
                     playersammounts.setItems(makeList(usernameInput.getText()));
                     playersammounts1.setItems(makeList(usernameInput.getText()));
                     menuLabel2.setText("Team: " + payboxservice.getLoggedUser().getName() + ":s CashBox Missing: " + playerservice.getSumfromTable(payboxservice.getLoggedUser().getName()) + " Money in Bank: " + playerservice.getSumfromAlLTimeTable(payboxservice.getLoggedUser().getName()));
@@ -177,7 +177,7 @@ public class MainSakkoKassa extends Application {
                     menuLabel2.setText("Team: " + payboxservice.getLoggedUser().getName() + ":s CashBox Missing: " + playerservice.getSumfromTable(payboxservice.getLoggedUser().getName()) + " Money in Bank: " + playerservice.getSumfromAlLTimeTable(payboxservice.getLoggedUser().getName()));
                     menuLabel.setText("Team: " + payboxservice.getLoggedUser().getName() + ":s CashBox Missing: " + playerservice.getSumfromTable(payboxservice.getLoggedUser().getName()) + " Money in Bank: " + playerservice.getSumfromAlLTimeTable(payboxservice.getLoggedUser().getName()));
                     primaryStage.setScene(AdminScene);
-                     PasswordInput.setText("");
+                    PasswordInput.setText("");
                     PasswordInput.setPromptText("Password");
                 } catch (SQLException ex) {
                     Logger.getLogger(MainSakkoKassa.class.getName()).log(Level.SEVERE, null, ex);
@@ -229,7 +229,7 @@ public class MainSakkoKassa extends Application {
         createAdminForm.getChildren().addAll(AdminPlayer, AdminAmmount, playerAmount);
         playerAmount.setOnAction(e -> {
             try {
-                if (AdminAmmount.getText().isEmpty() || AdminAmmount.getText().substring(0, 1).matches("[a-zA-Z]")) {
+                if (AdminPlayer.getText().isBlank() || AdminAmmount.getText().isBlank() || AdminAmmount.getText().substring(0, 1).matches("[a-zA-Z]")) {
                     AdminAmmount.setText("");
                     AdminAmmount.setPromptText("Need a Number");
                 } else {
@@ -248,19 +248,18 @@ public class MainSakkoKassa extends Application {
             }
         }
         );
-       
+
         mainAdminPane.setCenter(playersammounts);
         mainAdminPane.setBottom(createAdminForm);
         mainAdminPane.setTop(menuAdminPane);
-        
+
         primaryStage.setTitle("PayTables");
         primaryStage.setScene(loginScene);
         primaryStage.show();
 
         primaryStage.setOnCloseRequest(e
                 -> {
-            System.out.println("closing");
-
+            System.out.println("Ciao");
         }
         );
     }
@@ -269,8 +268,6 @@ public class MainSakkoKassa extends Application {
 
         @Override
     public void stop() throws SQLException {
-        // tee lopetustoimenpiteet täällä
-        System.out.println("Good bye!");
     }
 
     public static void main(String[] args) throws SQLException, Exception {

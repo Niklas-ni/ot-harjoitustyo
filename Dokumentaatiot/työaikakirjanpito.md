@@ -17,5 +17,6 @@ Pvm  |  Aika(h)  | Työ
 23.04 | 4  | Ui pelaajan lisäys
 27.04 | 6  | Testien tekoa checkstyle javadoc ja kayttoohje
 30.04 | 2  | Dokumentaation parannusta
+01.05 | 4  | Aika koska muutettu lisätty. java doc parantelua
 ------|----|------------
-00.00 | 70 | AikaYhteensä
+00.00 | 74 | AikaYhteensä

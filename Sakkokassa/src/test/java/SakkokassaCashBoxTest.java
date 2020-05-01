@@ -172,4 +172,10 @@ public class SakkokassaCashBoxTest {
         Payboxservice test1 = new Payboxservice(test);
         assertEquals(null, test.findByname("notExisting"));
     }
+    @Test
+    public void teamnameWithNumberFirstNotPossible() throws SQLException {
+        SqlCashboxdao test = new SqlCashboxdao();
+        Payboxservice test1 = new Payboxservice(test);
+        assertEquals(false, test1.createUser("2NotPossible", password));
+    }
 }

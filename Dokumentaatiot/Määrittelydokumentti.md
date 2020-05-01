@@ -55,7 +55,7 @@ ja myös poistua kassasta.
 
 * Kassankokonais suuruus paljonko sakkoja on tullut. (tehty)
 * mahdollisuus poistaa kokonaiskassasta jos on käytetty kassaa jonkun maksamiseen.
-* aika koska eri sakkoja lisätty.
+* aika koska eri sakkoja lisätty. (tehty)
 * syy miksi sakkoja lisätty.
 * joitain nopeita nappeja jolla saa helposti vastaavana kirjattua sakkoja nimille.
 * myös mahdollisuus tulostaa kassa tilanne esim whatapp viestiin.

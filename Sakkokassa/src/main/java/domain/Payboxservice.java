@@ -20,7 +20,7 @@ public class Payboxservice {
      * method login checks if user exist if user exists it return true and login
      * user
      *
-     * @param username
+     * @param username user chosen to login
      *
      * @return true
      * @throws java.sql.SQLException
@@ -37,7 +37,7 @@ public class Payboxservice {
     /**
      * method returns logged user
      *
-     * @param
+     * 
      *
      * @return loggedUser
      */
@@ -45,16 +45,20 @@ public class Payboxservice {
         return loggedIn;
     }
 
+    /**
+     * method setts loggedin user to null loggedIn = null;
+     */
     public void logout() {
         loggedIn = null;
     }
 
     /**
-     * method creates a user with password if it do not exist
+     * method creates a user with password if it do not exist Also return false
+     * if incorrect user. starts with number.
      *
-     * @param teamname user given team
+     * @param teamname user given team (not a number)
      * @param password user given password to team
-     * @return loggedUser
+     * @return true
      * @throws java.sql.SQLException
      */
     public boolean createUser(String teamname, String password) throws SQLException {
