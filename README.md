@@ -24,7 +24,7 @@ Jotta ohjelma toimii oikein käyttäjä tarvitsee java 11 tai uudemman version.
 
 * [Release viikko 5](https://github.com/Niklas-ni/ot-harjoitustyo/releases/tag/v1.0)
 * [Release viikko 6](https://github.com/Niklas-ni/ot-harjoitustyo/releases/tag/V2.0)
-
+* [Release viikko 7](https://github.com/Niklas-ni/ot-harjoitustyo/releases/tag/v2.2)
 ## Testaus
 
 Ohjelma suoritetaan komennolla
