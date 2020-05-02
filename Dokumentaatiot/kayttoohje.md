@@ -7,7 +7,7 @@
 ## Ohjelman käynnistäminen
 ohjelma voidaan käynnistää komennolla 
 *mvn compile exec:java -Dexec.mainClass=main.Main*
-ohjelman pikakuvakkeella 
+Lataamalla releases viikko 7 jar tiedoston 
 tai netbeansin kautta.
 
 ## Alkunäkymä
@@ -23,7 +23,7 @@ Jos olet uusi käyttäjä joudut tekemään uuden create paytable napilla.
 create näkymässä voi lisätä uuden joukkueen ja sille salasanan täyttämällä 
 name ja password. 
 * name pitää alkaa kirjaimella ja olla yli 2 merkkiä pitkä.
-* salasana voi olla mitä vaan.
+* salasana voi olla mitä vaan kunhan vähintään 4 merkkiä.
 
 ![Luonnos](Kuvat/createpage.png)
 
@@ -33,6 +33,7 @@ name ja password.
 jos vain tietää joukkueen nimen eikä salasanaa voi tästä näkymästä katso mitä 
 sakkoja on meneillä ja kenellä mitä sakkoja.
 Myös kassan rahamäärän ja maksamattomien sakkojen määrä näkyy.
+Kuin myös koska viimeksi päivitetty eri pelaajille.
 
 ![Luonnos](Kuvat/notadminpage.png)
 

@@ -1,8 +1,10 @@
 
 # SakkoKassa
 
-Sakkokassan tarkoitus on pitää kirjaa sakoista eri henilöille eri joukkueissa esim. 
+Sakkokassan tarkoitus on pitää kirjaa sakoista eri henilöille eri joukkueissa. 
 Se on tehty helpottamaan kirjanpitoa. Tarkoitus on pystyä lisäämään joukkue ja siihen sisälle pelaajia joille voi sitten vaihtaa sakkojen suuruutta.
+Ohjelma sitten pitää kirjaa paljonko kassassa on rahaa paljonko on maksamatta ja koska viimeiset päivitykset on tehty.
+
 
 ## Dokumentaatiot
 
@@ -11,7 +13,7 @@ Se on tehty helpottamaan kirjanpitoa. Tarkoitus on pystyä lisäämään joukkue
 * [Vaativuusmäärittely](https://github.com/Niklas-ni/ot-harjoitustyo/blob/master/Dokumentaatiot/M%C3%A4%C3%A4rittelydokumentti.md)
 * [Arkkitehtuuri](https://github.com/Niklas-ni/ot-harjoitustyo/blob/master/Dokumentaatiot/arkkitehtuuri.md)
 * [Käyttöohje](https://github.com/Niklas-ni/ot-harjoitustyo/blob/master/Dokumentaatiot/kayttoohje.md)
-
+* [TestausDokumentti](https://github.com/Niklas-ni/ot-harjoitustyo/blob/master/Dokumentaatiot/Testausdokumentti.md)
 
 
 ## Releases
@@ -25,6 +27,7 @@ Jotta ohjelma toimii oikein käyttäjä tarvitsee java 11 tai uudemman version.
 * [Release viikko 5](https://github.com/Niklas-ni/ot-harjoitustyo/releases/tag/v1.0)
 * [Release viikko 6](https://github.com/Niklas-ni/ot-harjoitustyo/releases/tag/V2.0)
 * [Release viikko 7](https://github.com/Niklas-ni/ot-harjoitustyo/releases/tag/v2.2)
+
 ## Testaus
 
 Ohjelma suoritetaan komennolla
