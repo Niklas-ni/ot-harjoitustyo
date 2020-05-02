@@ -83,6 +83,13 @@ tästä voi tehdä kyselyjä josta saa tiedot.
 tässä jokainen joukkue luo oman taulukon jossa on pelaajille
 (nimi,velkaa,summa) tästä sitten pystyy eri kyselyjen kanssa saamaan tietoja eri pelaajista.
 
+## Heikkoudet
 
+kassaui jossa on MainSakkoKassa joka huoltaa GUI:ta on todella sekava.
+Siihen pistäisin enemmän aikaa jos olisi. Olen laittanut enemmän aikaa siihen että ohjelma toimii kuin GUI:n ulkonäköön ja helppoon lisäämiseen.
+Dao luokkaan kun tallennan joukkueita laitan ne toUppercase jotta ei samanlaisia joukkueita voisi olla monta.
+tämän voisi jotenkin korjata niin että tämä pystyis palauttamaan Niin kirjoitetuna kun on syötetty.
+samoin olen tehnyt eri Players lisäämisessä. joka vain helpottaa vahinkosyötteiden tekoa.
+Sql kyselysiisä on myös hiean copypastea mikä voisi mahdollisesti poistaa. 
 
   

@@ -18,5 +18,6 @@ Pvm  |  Aika(h)  | Työ
 27.04 | 6  | Testien tekoa checkstyle javadoc ja kayttoohje
 30.04 | 2  | Dokumentaation parannusta
 01.05 | 4  | Aika koska muutettu lisätty. java doc parantelua
+02.05 | 3  | Virhesyötteitä otettu pois määrittely dok päivitys ja testidokumentti tehty
 ------|----|------------
-00.00 | 74 | AikaYhteensä
+00.00 | 77 | AikaYhteensä
