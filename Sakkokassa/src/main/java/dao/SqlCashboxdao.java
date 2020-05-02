@@ -3,7 +3,9 @@ package dao;
 import domain.PayBoxTable;
 import java.sql.*;
 import java.util.ArrayList;
-
+/**
+ * SqlCashboxdao keeps track of teams and passwords and what teams are already made
+ */
 public class SqlCashboxdao implements CashBoxdao {
 
     private ArrayList<PayBoxTable> teams;

@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * SqlPlayerdao Makes the tables according to what team names are given.
+ * also does sql questions to make different column answers and updates
+ */
 public class SqlPlayerdao implements Playerdao {
 
     /**

@@ -62,12 +62,12 @@ public class Payboxservice {
      * @throws java.sql.SQLException
      */
     public boolean createUser(String teamname, String password) throws SQLException {
-        if (teamname.substring(0, 1).matches("[0-9]")) {
+        if (teamname.isBlank() || teamname.substring(0, 1).matches("[0-9]")) {
             return false;
-        } else if (userDao.findByname(teamname) != null) {
+        } else if (userDao.findByname(teamname.toUpperCase()) != null) {
             return false;
         } else {
-            PayBoxTable user = new PayBoxTable(teamname, password);
+            PayBoxTable user = new PayBoxTable(teamname.toUpperCase(), password);
             userDao.create(user);
             return true;
         }

@@ -74,7 +74,7 @@ public class MainSakkoKassa extends Application {
         Button createButton = new Button("create new Team CashBox");
         loginButton.setOnAction(e -> {
             try {
-                if (payboxservice.login(usernameInput.getText())) {
+                if (payboxservice.login(usernameInput.getText().toUpperCase())) {
                     loginMessage.setText("");
 
                     SqlPlayerdao loggedinUser = new SqlPlayerdao(usernameInput.getText());
@@ -122,22 +122,22 @@ public class MainSakkoKassa extends Application {
         createNewUserButton.setPadding(new Insets(10));
         createNewUserButton.setOnAction(e
                 -> {
+             try {
             String username = newUsernameInput.getText();
-
             String Password = newPasswordInput.getText();
-            if (username.length() <= 2 || Password.length() < 4) {
+            if (username.isBlank() || Password.isBlank() || username.length() <= 2 || Password.length() < 4) {
                 userCreationMessage.setText("TeamName or Password too short. Or TeamName starts with number");
                 userCreationMessage.setTextFill(Color.RED);
             }
-            try {
-                if (payboxservice.createUser(username, Password)) {
+            
+            else if (payboxservice.createUser(username, Password)) {
                     userCreationMessage.setText("");
                     newUsernameInput.setText("");
                     newPasswordInput.setText("");
                     loginMessage.setText("new CashBox created");
                     loginMessage.setTextFill(Color.GREEN);
                     primaryStage.setScene(loginScene);
-                } else {
+            } else {
                     userCreationMessage.setText("Team Already Made Or starts with number");
                     userCreationMessage.setTextFill(Color.RED);
 
@@ -151,7 +151,7 @@ public class MainSakkoKassa extends Application {
         );
 
         newUserPane.getChildren().addAll(userCreationMessage, newUsernamePane, newNamePane, createNewUserButton);
-        newCashBoxScene = new Scene(newUserPane, 300, 250);
+        newCashBoxScene = new Scene(newUserPane, 400, 400);
         ScrollPane CashBoxpaytableScollbar = new ScrollPane();
         BorderPane mainPanepaybox = new BorderPane(CashBoxpaytableScollbar);
         paytableScene = new Scene(mainPanepaybox, 400, 550);
@@ -234,6 +234,8 @@ public class MainSakkoKassa extends Application {
                     AdminAmmount.setPromptText("Need a Number");
                 } else {
                     playerservice.addPlayer(new Player(AdminPlayer.getText().toUpperCase().strip(), Integer.parseInt(AdminAmmount.getText())), payboxservice.getLoggedUser().getName());
+                    AdminPlayer.setText("");
+                    AdminAmmount.setText("");
                     AdminPlayer.setPromptText("Player name");
                     AdminAmmount.setPromptText("Player amount");
                     playersammounts1.setItems(makeList(payboxservice.getLoggedUser().getName()));
