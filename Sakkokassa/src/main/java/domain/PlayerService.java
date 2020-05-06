@@ -125,7 +125,7 @@ public class PlayerService {
      */
 
     public String getTime() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy hh:mm");
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
         LocalDateTime now = LocalDateTime.now();
         return dtf.format(now);
     }
