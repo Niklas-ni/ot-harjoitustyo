@@ -19,8 +19,8 @@ Liittymässä on neljä eri näkymää
 * Alku näkymä missä on login, create new 
 * Jos create new niin create new näkymä. Missä on nimi ja salasana palkit.
 * Jos tiedät kassan nimen niin voit loginin avulla. kirjautua sisään johon tulisi näkyviin pelaajat ja sakkojen koot.
-* Kassa näkymässä voi sitten täyttää password tiedon. jolloin uuteen ikkunaan tulee näkyviin add player ja add sakko. 
-* "Admin" näkymässä voi sitten lisätä pelaajia ja muokata sakkoja.
+* Kassa näkymässä voi sitten täyttää password tiedon. jolloin uuteen ikkunaan tulee näkyviin mahdollisuus lisätä ja vaihtaa sakkoja. 
+* "Admin" näkymässä voi sitten lisätä pelaajia tai muokata sakkoja.
 
 ## Käyttöliittymäluonnos
 
@@ -63,7 +63,7 @@ jolla voi lisätä pelaajia.
 * void uppdateplayer() 
 jolla voi vaihtaa summaa pelaajalta.
 * ArrayList<String> getAll()
-joka palauttaa merkkijonona ("nimi" ja paljonko "velkaa" ja paljonko maksettu yhteensä.)
+joka palauttaa merkkijonona ("nimi" ja paljonko "velkaa" ja paljonko maksettu yhteensä ja last Uppdate)
 Payboxservice:
 * boolean Login()
 joka kirjaasisään tietyn käyttäjän jos on olemassa.
@@ -86,10 +86,10 @@ tässä jokainen joukkue luo oman taulukon jossa on pelaajille
 ## Heikkoudet
 
 kassaui jossa on MainSakkoKassa joka huoltaa GUI:ta on todella sekava.
-Siihen pistäisin enemmän aikaa jos olisi. Olen laittanut enemmän aikaa siihen että ohjelma toimii kuin GUI:n ulkonäköön ja helppoon lisäämiseen.
+Siihen pistäisin enemmän aikaa jos olisi. Olen laittanut enemmän aikaa siihen että ohjelma toimii kuin GUI:n ulkonäköön ja helppoon hallintaan.
 Dao luokkaan kun tallennan joukkueita laitan ne toUppercase jotta ei samanlaisia joukkueita voisi olla monta.
 tämän voisi jotenkin korjata niin että tämä pystyis palauttamaan Niin kirjoitetuna kun on syötetty.
 samoin olen tehnyt eri Players lisäämisessä. joka vain helpottaa vahinkosyötteiden tekoa.
-Sql kyselysiisä on myös hiean copypastea mikä voisi mahdollisesti poistaa. 
-
+Sql kyselysiisä on myös hieman copypastea mikä voisi mahdollisesti poistaa. 
+Ja Testipaketit voisi vielä jakaa domain ja dao paketeiksi.
   

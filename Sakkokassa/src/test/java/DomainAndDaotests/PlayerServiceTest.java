@@ -1,25 +1,35 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package DomainAndDaotests;
 
 import dao.SqlPlayerdao;
 import domain.PayBoxTable;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-import org.junit.AfterClass;
-import org.junit.Test;
-import static org.junit.Assert.*;
 import domain.Player;
 import domain.PlayerService;
+import java.sql.Connection;
 import java.sql.DatabaseMetaData;
+import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
-public class SakkokassaPlayerTest {
-
-    public SakkokassaPlayerTest() {
-    }
+/**
+ *
+ * @author niri91
+ */
+public class PlayerServiceTest {
 
     public static boolean tableExists(String nameOfTeam) throws SQLException {
         Connection db = DriverManager.getConnection("jdbc:sqlite:teamPlayers.db");
@@ -32,12 +42,14 @@ public class SakkokassaPlayerTest {
         db.close();
         return false;
     }
-      public String getTime() {
+
+    public String getTime() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
         LocalDateTime now = LocalDateTime.now();
         return dtf.format(now);
     }
     private String cashboxdaotable = "payboxtable";
+    private String password = "Password";
     private String team1 = "TPS";
     private String team2 = "HIfk";
     private String team3 = "IFK";
@@ -46,7 +58,9 @@ public class SakkokassaPlayerTest {
     private String team8 = "TOR";
     private String team9 = "SBS";
     private String team10 = "EHT";
-    private String password = "password";
+
+    public PlayerServiceTest() {
+    }
 
     @AfterClass
     public static void tearDownClass() throws SQLException {
@@ -58,7 +72,7 @@ public class SakkokassaPlayerTest {
         String team8 = "TOR";
         String team9 = "SBS";
         String team10 = "EHT";
-
+        
         Connection db = DriverManager.getConnection("jdbc:sqlite:teamPlayers.db");
         Statement player = db.createStatement();
         player.execute("DROP TABLE " + team1);
@@ -69,35 +83,6 @@ public class SakkokassaPlayerTest {
         player.execute("DROP TABLE " + team8);
         player.execute("DROP TABLE " + team9);
         player.execute("DROP TABLE " + team10);
-
-    }
-
-    @Test
-    public void createPlayer() throws SQLException {
-        PayBoxTable test = new PayBoxTable(team1, password);
-        Player testPlayer = new Player(team1, 22, team1);
-    }
-
-    @Test
-    public void createPlayerWithoutAmmountMakesAmmount0() throws SQLException {
-        PayBoxTable test = new PayBoxTable(team1, password);
-        Player testPlayer = new Player(team1, 0);
-        assertEquals(0, testPlayer.getAmmount());
-    }
-
-    @Test
-    public void setAmmountMakesPlayerNewAmmount() throws SQLException {
-        PayBoxTable test = new PayBoxTable(team1, password);
-        Player testPlayer = new Player(team1, 0);
-        testPlayer.setAmmount(22);
-        assertEquals(22, testPlayer.getAmmount());
-    }
-
-    @Test
-    public void playerGetName() throws SQLException {
-        PayBoxTable test = new PayBoxTable(team1, password);
-        Player testPlayer = new Player(team1, 0);
-        assertEquals(team1, testPlayer.getname());
     }
 
     @Test
@@ -112,7 +97,7 @@ public class SakkokassaPlayerTest {
         SqlPlayerdao test = new SqlPlayerdao(team2);
         PlayerService test1 = new PlayerService(test);
         PayBoxTable testPayBox = new PayBoxTable(team2, password);
-        Player testPlayer = new Player(team1, 0, team2);
+        Player testPlayer = new Player(team1, 0);
         assertEquals(true, test1.addPlayer(testPlayer, team2));
     }
 
@@ -121,8 +106,8 @@ public class SakkokassaPlayerTest {
         SqlPlayerdao test = new SqlPlayerdao(team2);
         PlayerService test1 = new PlayerService(test);
         PayBoxTable testPayBox = new PayBoxTable(team2, password);
-        Player testPlayer = new Player(team1, 22, team2);
-        Player testPlayer1 = new Player(team1, 28, team2);
+        Player testPlayer = new Player(team1, 22);
+        Player testPlayer1 = new Player(team1, 28);
         test1.addPlayer(testPlayer1, team2);
         assertEquals(true, test1.addPlayer(testPlayer, team2));
     }
@@ -132,7 +117,7 @@ public class SakkokassaPlayerTest {
         SqlPlayerdao test = new SqlPlayerdao(team1);
         PlayerService test1 = new PlayerService(test);
         PayBoxTable testPayBox = new PayBoxTable(team1, password);
-        Player test4 = new Player(team1, 33, team1);
+        Player test4 = new Player(team1, 33);
         test1.addPlayer(test4, team1);
         ArrayList<String> testprint = new ArrayList<>();
         testprint.add("TPS ToPay: 33 AllTime: 33 Euros. Last Uppdate " + getTime());
@@ -155,7 +140,7 @@ public class SakkokassaPlayerTest {
         SqlPlayerdao test = new SqlPlayerdao(team3);
         PlayerService test1 = new PlayerService(test);
         PayBoxTable testPayBox = new PayBoxTable(team3, password);
-        Player test4 = new Player(team3, 33, team3);
+        Player test4 = new Player(team3, 33);
         test1.addPlayer(test4, team3);
         test4.setAmmount(55);
         test1.uppdatePlayerAmmount(test4, team3);
@@ -169,9 +154,9 @@ public class SakkokassaPlayerTest {
         SqlPlayerdao test = new SqlPlayerdao(team4);
         PlayerService test1 = new PlayerService(test);
         PayBoxTable testPayBox = new PayBoxTable(team4, password);
-        Player test4 = new Player(team4, 33, team4);
+        Player test4 = new Player(team4, 33);
         test1.addPlayer(test4, team4);
-        Player test5 = new Player(team3, 4, team4);
+        Player test5 = new Player(team3, 4);
         test1.addPlayer(test5, team4);
         assertEquals(37, test1.getSumfromTable(team4));
     }
@@ -181,9 +166,9 @@ public class SakkokassaPlayerTest {
         SqlPlayerdao test = new SqlPlayerdao(team5);
         PlayerService test1 = new PlayerService(test);
         PayBoxTable testPayBox = new PayBoxTable(team5, password);
-        Player test4 = new Player(team5, 33, team5);
+        Player test4 = new Player(team5, 33);
         test1.addPlayer(test4, team5);
-        Player test5 = new Player(team3, 4, team5);
+        Player test5 = new Player(team3, 4);
         test1.addPlayer(test5, team5);
         assertEquals(37, test1.getSumfromAlLTimeTable(team5));
     }
@@ -193,9 +178,9 @@ public class SakkokassaPlayerTest {
         SqlPlayerdao test = new SqlPlayerdao(team8);
         PlayerService test1 = new PlayerService(test);
         PayBoxTable testPayBox = new PayBoxTable(team8, password);
-        Player test4 = new Player(team3, 33, team8);
+        Player test4 = new Player(team3, 33);
         test1.addPlayer(test4, team8);
-        Player test5 = new Player(team3, -33, team8);
+        Player test5 = new Player(team3, -33);
         test1.addPlayer(test5, team8);
         ArrayList<String> testprint = new ArrayList();
         testprint.add("IFK ToPay: 0 AllTime: 33 Euros. Last Uppdate " + getTime());
@@ -207,9 +192,9 @@ public class SakkokassaPlayerTest {
         SqlPlayerdao test = new SqlPlayerdao(team9);
         PlayerService test1 = new PlayerService(test);
         PayBoxTable testPayBox = new PayBoxTable(team9, password);
-        Player test4 = new Player(team3, 33, team9);
+        Player test4 = new Player(team3, 33);
         test1.addPlayer(test4, team9);
-        Player test5 = new Player(team3, -23, team9);
+        Player test5 = new Player(team3, -23);
         test1.addPlayer(test5, team9);
         ArrayList<String> testprint = new ArrayList();
         testprint.add("IFK ToPay: 10 AllTime: 33 Euros. Last Uppdate " + getTime());
@@ -221,9 +206,9 @@ public class SakkokassaPlayerTest {
         SqlPlayerdao test = new SqlPlayerdao(team10);
         PlayerService test1 = new PlayerService(test);
         PayBoxTable testPayBox = new PayBoxTable(team10, password);
-        Player test4 = new Player(team3, 33, team10);
+        Player test4 = new Player(team3, 33);
         test1.addPlayer(test4, team10);
-        Player test8 = new Player(team3, -33, team10);
+        Player test8 = new Player(team3, -33);
         test1.uppdatePlayerAmmount(test8, team10);
         ArrayList<String> testprint = new ArrayList();
         testprint.add("IFK ToPay: 0 AllTime: 33 Euros. Last Uppdate " + getTime());

@@ -28,8 +28,8 @@ Sovellus koostuu neljästä eri näkymästä.
 * alkusivu jossa voi joko kirjautua sisään (Login) jos tietää kassan nimen tai sitten tehdä uusi(Create new).
 * Create new sivu jossa voi täyttää kassan nimen ja passwordin jolla sitten pystyy kassaa hallinnoimaan.
 * Katsomis sivu jossa voi katsella miten paljon sakkoja on maksanut kaudessa ja miten paljon sakkoja on maksamatta. 
-Siinä näkyy myös paljonko rahaa kassassa on, ja paljonko vielä kaikilta maksamatta.
-*Admin näkymä jossa voi sitten lisätä ja poistaa sakkoja eri pelaajilta. 
+ Siinä näkyy myös paljonko rahaa kassassa on, ja paljonko vielä kaikilta maksamatta.
+*Admin näkymä jossa voi sitten lisätä ja poistaa sakkoja eri pelaajilta ja ohjelma pitää myös kirjaa koska viimeinen päivitys on tehty. 
 
 ## **Toiminnallisuus:**
 
@@ -40,7 +40,7 @@ Siinä näkyy myös paljonko rahaa kassassa on, ja paljonko vielä kaikilta maks
 * Jos tiedät passwordin niin mahdollisuus lisätä pelaajia (tehty)
 * Jos tiedät passwordin niin mahdollisuus lisätä sakkoja (tehty)
 * Poistua sivusta kun valmis (tehty)
-* Lista toteutus pelaajista ja sakoista muotoa Nimi / Sakko. (tehty)
+* Lista toteutus pelaajista ja sakoista muotoa Nimi / Sakko / Summa / Päiväys. (tehty)
 
 
 ## **Perusversion tarjonta**

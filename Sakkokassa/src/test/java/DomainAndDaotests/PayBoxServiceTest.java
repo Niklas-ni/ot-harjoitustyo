@@ -1,3 +1,4 @@
+package DomainAndDaotests;
 
 import dao.SqlCashboxdao;
 import domain.PayBoxTable;
@@ -17,9 +18,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class SakkokassaCashBoxTest {
+public class PayBoxServiceTest {
 
-    public SakkokassaCashBoxTest() {
+    public PayBoxServiceTest() {
     }
 
     private String cashboxdaotable = "payboxtable";
@@ -56,11 +57,6 @@ public class SakkokassaCashBoxTest {
         return true;
     }
 
-    @BeforeClass
-    public static void setUpClass() {
-
-    }
-
     @AfterClass
     public static void tearDownClass() throws SQLException {
         String cashboxDaotable = "payboxtable";
@@ -69,14 +65,6 @@ public class SakkokassaCashBoxTest {
         Connection db = DriverManager.getConnection("jdbc:sqlite:teams.db");
         Statement payboxtable = db.createStatement();
         payboxtable.execute("DROP TABLE " + cashboxDaotable);
-    }
-
-    @Before
-    public void setUp() {
-    }
-
-    @After
-    public void tearDown() {
     }
 
     @Test
@@ -172,12 +160,14 @@ public class SakkokassaCashBoxTest {
         Payboxservice test1 = new Payboxservice(test);
         assertEquals(null, test.findByname("notExisting"));
     }
+
     @Test
     public void teamnameWithNumberFirstNotPossible() throws SQLException {
         SqlCashboxdao test = new SqlCashboxdao();
         Payboxservice test1 = new Payboxservice(test);
         assertEquals(false, test1.createUser("2NotPossible", password));
     }
+
     @Test
     public void teamnameEmptyOrWhiteSpaceReturnFalse() throws SQLException {
         SqlCashboxdao test = new SqlCashboxdao();

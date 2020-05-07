@@ -19,5 +19,6 @@ Pvm  |  Aika(h)  | Työ
 30.04 | 2  | Dokumentaation parannusta
 01.05 | 4  | Aika koska muutettu lisätty. java doc parantelua
 02.05 | 3  | Virhesyötteitä otettu pois määrittely dok päivitys ja testidokumentti tehty
+07.05 | 3  | Testejen jakoa ja pientä viimeistelyä (dokumntointiin)
 ------|----|------------
 00.00 | 77 | AikaYhteensä
