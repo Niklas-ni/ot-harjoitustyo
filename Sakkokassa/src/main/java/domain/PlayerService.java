@@ -123,7 +123,6 @@ public class PlayerService {
      * @return the currentTime
      *
      */
-
     public String getTime() {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm");
         LocalDateTime now = LocalDateTime.now();

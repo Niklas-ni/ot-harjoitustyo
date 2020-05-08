@@ -20,6 +20,7 @@ public class PayBoxTableTest {
         PayBoxTable testPaybox = new PayBoxTable(testTeam, password);
         assertEquals(testTeam, testPaybox.getName());
     }
+
     @Test
     public void MakingTableAndreturnsPassword() {
         PayBoxTable testPaybox = new PayBoxTable(testTeam, password);

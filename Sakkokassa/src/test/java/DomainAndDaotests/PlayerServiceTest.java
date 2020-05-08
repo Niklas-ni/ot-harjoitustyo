@@ -72,7 +72,7 @@ public class PlayerServiceTest {
         String team8 = "TOR";
         String team9 = "SBS";
         String team10 = "EHT";
-        
+
         Connection db = DriverManager.getConnection("jdbc:sqlite:teamPlayers.db");
         Statement player = db.createStatement();
         player.execute("DROP TABLE " + team1);
