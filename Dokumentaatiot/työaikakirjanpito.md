@@ -21,4 +21,4 @@ Pvm  |  Aika(h)  | Työ
 02.05 | 3  | Virhesyötteitä otettu pois määrittely dok päivitys ja testidokumentti tehty
 07.05 | 3  | Testejen jakoa ja pientä viimeistelyä (dokumntointiin)
 ------|----|------------
-00.00 | 77 | AikaYhteensä
+00.00 | 80 | AikaYhteensä
